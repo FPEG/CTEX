@@ -1,0 +1,60 @@
+\documentclass[UTF8,a4paper,12pt,scheme=chinese]{ctexart}
+\usepackage{amsmath}
+\usepackage{textcomp} 
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{setspace}
+\usepackage{subeqnarray}
+\usepackage{longtable}
+\newcommand{\ud}{\mathrm{d}}
+\newcommand{\arccot}{\mathrm{arccot}\,}
+\begin{document}
+	\begin{longtable}{|r|c|l|}
+		\hline
+		$ -\cos x +C $&$ \sin x $&$ \cos x $\\
+		\hline
+		$ \sin x +C $ & $ \cos x $ & $ -\sin x $ \\
+		\hline\rule[-2.5ex]{0pt}{7ex}
+		$ -\ln|\cos x|+C $ & $ \tan x $ & $ \sec ^2x=\dfrac{1}{\cos^2x} $ \\
+		\hline\rule[-2.5ex]{0pt}{7ex}
+		$ -\ln|\sin x|+C $ & $ \cot x=\dfrac{1}{\tan x} $ & $ -\csc^2x=-\dfrac{1}{\sin^2x} $ \\
+		\hline\rule[-2.5ex]{0pt}{7ex}
+		$ \ln|\sec x + \tan x|+C $ & $ \sec x = \dfrac{1}{\cos x} $ & $ \sec x \tan x 
+		= \dfrac{\tan x}{\cos x}
+		= \dfrac{\sin x}{\cos^2x} $ \\
+		\hline\rule[-2.5ex]{0pt}{7ex}
+		$ \ln|\csc x - \cot x|+C $ & $ \csc x = \dfrac{1}{\sin x} $ & $ -\csc x \cot x 
+		= -\dfrac{\cot x}{\sin x}
+		= -\dfrac{\cos x}{\sin^2x} $ \\
+		\hline\rule[-2.5ex]{0pt}{7ex}
+		$  $ & $ \arcsin \dfrac{x}{a} $ & $ +\dfrac{1}{\sqrt{a^2-x^2}} $ \\
+		\hline\rule[-2.5ex]{0pt}{7ex}
+		$  $ & $ \arccos x $ & $ -\dfrac{1}{\sqrt{1-x^2}} $ \\
+		\hline\rule[-2.5ex]{0pt}{7ex}
+		$  $ & $ \dfrac{1}{a}\arctan \dfrac{x}{a} $ & $ +\dfrac{1}{a^2+x^2} $ \\
+		\hline\rule[-2.5ex]{0pt}{7ex}
+		$  $ & $ \arccot x $ & $ -\dfrac{1}{1+x^2} $ \\
+		\hline\rule[-2.5ex]{0pt}{7ex}
+		$  $ & $ \ln(x+\sqrt{x^2+a^2}) $ & $ \dfrac{1}{\sqrt{x^2+a^2}} $ \\
+		\hline\rule[-2.5ex]{0pt}{7ex}
+		$  $ & $ \ln|x+\sqrt{x^2-a^2}| $ & $ \dfrac{1}{\sqrt{x^2-a^2}} $ \\
+		\hline\rule[-2.5ex]{0pt}{7ex}
+		$  $ & $ \dfrac{1}{2a}\ln|\dfrac{x-a}{x+a}| $ & $ \dfrac{1}{x^2-a^2} $ \\
+		\hline
+		$  $ & $  $ & $  $ \\
+		\hline\rule[-2.5ex]{0pt}{7ex}
+		$  $ & $ \arcsin x $ & $ \dfrac{1}{\sqrt{1-x^2}} $ \\
+		\hline\rule[-2.5ex]{0pt}{7ex}
+		$  $ & $ \arccos x $ & $ -\dfrac{1}{\sqrt{1-x^2}} $ \\
+		\hline\rule[-2.5ex]{0pt}{7ex}
+		$  $ & $ \arctan x $ & $ \dfrac{1}{1+x^2} $ \\
+		\hline\rule[-2.5ex]{0pt}{7ex}
+		$  $ & $ \arccot x $ & $ -\dfrac{1}{1+x^2} $ \\
+		\hline\rule[-2.5ex]{0pt}{7ex}
+		$  $ & $ \ln(x+\sqrt{x^2+1}) $ & $ \dfrac{1}{\sqrt{x^2+1}} $ \\
+		\hline\rule[-2.5ex]{0pt}{7ex}
+		$  $ & $ \ln(x+\sqrt{x^2-1}) $ & $ \dfrac{1}{\sqrt{x^2-1}} $ \\
+		\hline
+		
+	\end{longtable}
+\end{document}

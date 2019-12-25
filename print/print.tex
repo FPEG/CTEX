@@ -1,0 +1,88 @@
+\documentclass[UTF8,a4paper,12pt,scheme=chinese]{ctexart}
+
+%\setlength{\textwidth}{550pt}
+%\setlength{\hoffset}{-1.2in}
+%\setlength{\voffset}{-1in}
+
+\usepackage{amsmath}
+\usepackage{textcomp} 
+\usepackage{graphicx}
+\usepackage{xcolor}
+
+\newcommand{\hlx}[2]{%
+	\IfEqCase{#1}{%
+		{1}{
+			\colorbox{yellow!50}{$\displaystyle#2$}
+		}
+		{b}{
+			\colorbox{yellow!50}{$\scriptstyle#2$}
+		}
+		{3}{
+			\colorbox{yellow!50}{$\scriptscriptstyle#2$}
+		}
+	}
+	% you can add more cases here as desired
+	
+}%
+
+
+\pagestyle{headings}
+\ctexset{section={
+		name={第,章},
+		number=\arabic{section},
+	},
+	subsection={
+		name={第,节},
+		number=\arabic{subsection},
+	},
+}
+
+
+\newcommand{\ud}{\mathrm{d}}
+\newcommand{\lc}{\left(}
+\newcommand{\rc}{\right)}
+
+\newcommand{\hl}[1]{\colorbox{yellow}{#1}}
+\newcommand{\hla}[1]{%
+	\colorbox{yellow!50}{$\displaystyle#1$}}
+\newcommand{\hlb}[1]{%
+	\colorbox{yellow!50}{$\scriptstyle#1$}}
+\newcommand{\hlc}[1]{%
+	\colorbox{yellow!50}{$\scriptscriptstyle#1$}}
+
+\makeatletter
+\DeclareFontFamily{U}{tipa}{}
+\DeclareFontShape{U}{tipa}{m}{n}{<->tipa10}{}
+\newcommand{\arc@char}{{\usefont{U}{tipa}{m}{n}\symbol{62}}}%
+
+\newcommand{\arc}[1]{\mathpalette\arc@arc{#1}}
+
+\newcommand{\arc@arc}[2]{%
+	\sbox0{$\m@th#1#2$}%
+	\vbox{
+		\hbox{\resizebox{\wd0}{\height}{\arc@char}}
+		\nointerlineskip
+		\box0
+	}%
+}
+\makeatother
+
+\begin{document}
+	\paragraph{常用函数的泰勒级数}
+\begin{enumerate}
+			\item $\displaystyle
+			e^x=\sum_{n=0}^{\infty}\frac{x^n}{n!}$
+			\item $\displaystyle
+			\sin x = \sum_{n=0}^{\infty}\frac{(-1)^n}{(2n+1)!}x^{2n+1}$
+			\item $\displaystyle
+			\cos x = \sum_{n=0}^{\infty}\frac{(-1)^n}{(2n)!}x^{2n}$
+			\item $\displaystyle
+			\frac{1}{1+x} = \sum_{n=0}^{\infty}(-1)^nx^n$
+			\item $\displaystyle
+			\ln(1+x) = \sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n}x^n$
+			\item $(1+x)^m$
+			\subitem $\displaystyle\sqrt{1+x} = 1 + \frac{1}{2}x + \sum_{n=2}^{\infty}(-1)^{n-1}\frac{(2n-3)!!}{(2n)!!}x^n$
+			\subitem $\displaystyle
+			\frac{1}{\sqrt{1+x}} = 1 + \sum_{n=1}^{\infty}(-1)^{n}\frac{(2n-1)!!}{(2n)!!}x^n$
+		\end{enumerate}
+\end{document}

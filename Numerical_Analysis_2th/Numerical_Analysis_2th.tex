@@ -1,0 +1,216 @@
+\documentclass[UTF8,a4paper,12pt,scheme=chinese]{ctexbook}
+
+\addtolength{\textwidth}{1in}
+\addtolength{\hoffset}{-0.5in}
+%\setlength{\voffset}{-1in}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{textcomp} 
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{mathrsfs}
+\usepackage{tikz}
+\usepackage{amsthm}
+%\usepackage{soul}
+\usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,positioning,fit,petri}
+
+%\usepackage{latexsym}
+
+\newcommand{\hlx}[2]{%
+	\IfEqCase{#1}{%
+		{1}{
+			\colorbox{yellow!50}{$\displaystyle#2$}
+		}
+		{b}{
+			\colorbox{yellow!50}{$\scriptstyle#2$}
+		}
+		{3}{
+			\colorbox{yellow!50}{$\scriptscriptstyle#2$}
+		}
+	}
+	% you can add more cases here as desired
+	
+}%
+
+
+%\pagestyle{headings}
+%\ctexset{
+
+%}
+\pagestyle{headings}
+\ctexset{
+	%	section={	
+	%		name={第,章},
+	%		number=\arabic{section},
+	%	},
+	section={
+		name={\S,},
+		number=\arabic{section},
+	},
+	subsection={
+		name={,},
+		number=\arabic{subsection}.,
+	},
+	subsubsection/name = {},
+	subsubsection={
+		%		name={asd,啊},
+		number=\arabic{subsubsection}.,
+		aftername={},
+		format=\Large\bfseries\CJKfamily{zhsong},
+	},
+	paragraph={
+		%		name={asd,啊},
+		%		number=\arabic{subsubsection},
+		format=\bfseries\youyuan,
+	},
+}
+\setcounter{secnumdepth}{3}
+\newcommand{\ud}{\mathrm{d}}
+\newcommand{\Arg}{\mathrm{Arg}}
+\newcommand{\lc}{\left(}
+\newcommand{\rc}{\right)}
+
+\newcommand{\hl}[1]{\colorbox{yellow}{#1}}
+\newcommand{\hla}[1]{%
+	\colorbox{yellow!50}{$\displaystyle#1$}}
+\newcommand{\hlb}[1]{%
+	\colorbox{yellow!50}{$\scriptstyle#1$}}
+\newcommand{\hlc}[1]{%
+	\colorbox{yellow!50}{$\scriptscriptstyle#1$}}
+
+\makeatletter
+\DeclareFontFamily{U}{tipa}{}
+\DeclareFontShape{U}{tipa}{m}{n}{<->tipa10}{}
+\newcommand{\arc@char}{{\usefont{U}{tipa}{m}{n}\symbol{62}}}%
+
+\newcommand{\arc}[1]{\mathpalette\arc@arc{#1}}
+
+\newcommand{\arc@arc}[2]{%
+	\sbox0{$\m@th#1#2$}%
+	\vbox{
+		\hbox{\resizebox{\wd0}{\height}{\arc@char}}
+		\nointerlineskip
+		\box0
+	}%
+}
+
+\everymath{\displaystyle}
+%\newtheorem{btheorem}{b定理}[section]
+\newtheorem{theorem}{定理}[chapter]
+%\renewcommand{\theorem}{\arabic{subsection}.\arabic{thm}}
+\newtheorem*{theorem*}{非书定理}
+\theoremstyle{plain}
+\newtheorem{definition}{定义}[section]
+\newtheorem{property}{性质}[subsection]
+\makeatother
+
+\begin{document}
+	\chapter{求解方程}
+	\section{二分法}
+	\section{不动点迭代}
+	\section{精度的极限}
+	\section{牛顿方法}
+	\subsection{牛顿方法的二次收敛}
+	\paragraph{证明}
+	\subsubsection{牛顿下山法}
+	\subsubsection{简化牛顿迭代法}
+	\paragraph{公式}$
+	\begin{array}{l}
+	x_{i+1}=x_i-\dfrac{f(x_i)}{f(x_0)}\\
+	x_{i+1}=x_i-\dfrac{f(x_i)}{C}\\
+	\varphi(x_{i})=x_i-\dfrac{f(x_i)}{C}\\
+	\varphi'(x^*)=1-\dfrac{f'(x^*)}{C}\mbox{线性收敛}\\
+	\end{array} 
+	$
+	\subsubsection{带参数的你的的地方(m重根)}
+	\paragraph{title}$  $
+	\begin{definition}[m重根]
+		$ f(x)=(x-x^*)^m\cdot h(x),h'(x)\neq0 $\\
+		$ g(x)=[f(x)]^{\dfrac{1}{m(*)}}=(x-x^*)^m\cdot h(x),h'(x)\neq0 $
+		
+	\end{definition}
+	\chapter{方程组}
+	\section{高斯消去法}
+	防止误差
+	\subsection{顺序高斯消元/朴素高斯消去}
+	有误差,淹没现象，大乘子，
+	$ -\dfrac{a_{21}}{a_{11}},a_{11} $太小
+	\subsection{(列)主元高斯消元}
+	选择绝对值最大的数做主元
+	\section{LU分解}
+	顺序消元法加强版\\
+	$ \left[\begin{array}{cccc}
+	a_{11}&\cdots&a_{1n}&b_1\\
+	0&&a_{nn}&b_n
+	\end{array}\right] L'A=U,A=(L')^{-1}U=LU$
+	\paragraph{title}$AX=b$
+	\paragraph{L,b已知,求C}$L(UX)=b=LC$
+	\paragraph{求X}$ UX=C $
+	
+	\paragraph{A化为LU的步骤}
+	A化为上三角：初等行变换=左乘(初等矩阵)
+	\paragraph{title}$ \left[\begin{array}{ccccc}
+	1\\
+	-C_{21}&1\\
+	&&1\\
+	&&&1\\
+	&&&&1
+	\end{array}\right]
+	\left[\begin{array}{ccccc}
+	1\\
+	&1\\
+	-C_{31}&&1\\
+	&&&1\\
+	&&&&1
+	\end{array}\right]
+	=
+		\left[\begin{array}{ccccc}
+	1\\
+	-C_{21}&1\\
+	-C_{31}&&1\\
+	&&&1\\
+	&&&&1
+	\end{array}\right]
+	=L_1
+	 $
+	 \paragraph{L逆}
+	 $ \left[\begin{array}{ccccc}
+	 1\\
+	 -C_{21}&1\\
+	 &&1\\
+	 &&&1\\
+	 &&&&1
+	 \end{array}\right]
+	 \left[\begin{array}{ccccc}
+	 1\\
+	 C_{21}&1\\
+	 &&1\\
+	 &&&1\\
+	 &&&&1
+	 \end{array}\right]
+	 =
+	 \left[\begin{array}{ccccc}
+	 1\\
+	 &1\\
+	 &&1\\
+	 &&&1\\
+	 &&&&1
+	 \end{array}\right] $其他都一样
+	\section{误差来源}
+	\section{PA=LU分解}
+	
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+

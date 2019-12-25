@@ -1,0 +1,500 @@
+\documentclass[UTF8,a4paper,12pt,scheme=chinese]{ctexart}
+
+%\setlength{\textwidth}{550pt}
+%\setlength{\hoffset}{-1.2in}
+%\setlength{\voffset}{-1in}
+
+\usepackage{amsmath}
+\usepackage{textcomp} 
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{setspace}
+\usepackage{subeqnarray}
+
+\linespread{1.6}
+
+\newcommand{\hlx}[2]{%
+	\IfEqCase{#1}{%
+		{1}{
+			\colorbox{yellow!50}{$\displaystyle#2$}
+		}
+		{b}{
+			\colorbox{yellow!50}{$\scriptstyle#2$}
+		}
+		{3}{
+			\colorbox{yellow!50}{$\scriptscriptstyle#2$}
+		}
+	}
+		% you can add more cases here as desired
+	
+}%
+
+
+%\pagestyle{headings}
+\ctexset{
+	section={
+		name={第,章},
+		number=\arabic{section},
+		format=\flushleft\bfseries,
+		},
+	subsection={
+		name={,},
+		numberformat=\sffamily,
+		format=\youyuan\large ,
+		number=\arabic{section}-\arabic{subsection},
+		},
+	subsubsection={
+		name={,},
+		format=\normalsize\flushleft\CJKfamily{zhsong}\bfseries,
+		number=\chinese{subsubsection}、,
+	},
+}
+
+
+\newcommand{\ud}{\mathrm{d}}
+\newcommand{\lc}{\left(}
+\newcommand{\rc}{\right)}
+
+\newcommand{\hl}[1]{\colorbox{yellow}{#1}}
+\newcommand{\hla}[1]{%
+	\colorbox{yellow!50}{$\displaystyle#1$}}
+\newcommand{\hlb}[1]{%
+	\colorbox{yellow!50}{$\scriptstyle#1$}}
+\newcommand{\hlc}[1]{%
+	\colorbox{yellow!50}{$\scriptscriptstyle#1$}}
+
+\makeatletter
+\DeclareFontFamily{U}{tipa}{}
+\DeclareFontShape{U}{tipa}{m}{n}{<->tipa10}{}
+\newcommand{\arc@char}{{\usefont{U}{tipa}{m}{n}\symbol{62}}}%
+
+\newcommand{\arc}[1]{\mathpalette\arc@arc{#1}}
+
+\newcommand{\arc@arc}[2]{%
+	\sbox0{$\m@th#1#2$}%
+	\vbox{
+		\hbox{\resizebox{\wd0}{\height}{\arc@char}}
+		\nointerlineskip
+		\box0
+	}%
+}
+\everymath{\displaystyle}
+\allowdisplaybreaks
+\makeatother
+
+\begin{document}
+	\section{振动}
+	\subsection{简谐振动、振幅、周期和频率、相位}
+	\begin{enumerate}
+		\item $XF$\\
+		$\Phi = \omega t+\hla{\varphi}$\\
+		$x=A\cos\Phi$\\
+		$v=-A\omega\sin\Phi$
+		
+	\end{enumerate}
+	\subsection{旋转矢量}
+	\subsection{单摆和复摆}
+	\subsection{简谐振动的能量}
+	\begin{enumerate}
+		\item $E$\\
+		$E=E_k+E_p=\frac{1}{2}kA^2$\\
+		$\displaystyle
+		E_k=\frac{1}{2}mv^2=\frac{1}{2}m\omega^2A^2\sin^2(\omega t+\varphi)$\\
+		$\displaystyle
+		E_p=\frac{1}{2}kx^2=\frac{1}{2}kA^2\cos^2(\omega t+\varphi)$
+	\end{enumerate}
+	
+	\subsection{简谐振动的合成}
+	\begin{enumerate}
+		\item $X_1X_2\rightarrow X$
+		\item $X_1X_2\rightarrow A$\\
+		$A=\sqrt{{A_1}^2+{A_2}^2+2A_1A_2\cos(\varphi_2-\varphi_1)}$
+		\item $X_1X_2\rightarrow \varphi$\\
+		$\displaystyle
+		\tan \varphi=\frac{A_1\sin\varphi_1+A_2\sin\varphi_2}{A_1\cos\varphi_1+A_2\cos\varphi_2}$
+		
+	\end{enumerate}
+	\newpage
+	\section{波动}
+	\subsection{机械波的几个概念}
+	\subsection{平面简谐波的波函数}
+	\subsubsection{平面简谐波的波函数}
+	\subsection{波的能量、能流密度}
+	\subsection{惠更斯原理、波的衍射和干涉}
+	\subsubsection{惠更斯原理}
+	\subsubsection{波的衍射}
+	\subsubsection{波的干涉}
+	\begin{enumerate}
+		\item $yF$\\
+		$\displaystyle
+		y=A\cos\left[\omega\left(t\mp\frac{x-x_0}{\hla{u}}\right)+\varphi\right]\\
+		y=A\cos\left[2\pi\left(\hla{\nu} t\mp\frac{x-x_0}{\hla{\lambda}}\right)+\varphi\right]
+		$
+		\item $\varphi_1\varphi_2\rightarrow A$\\
+		$\displaystyle
+		A=\sqrt{{A_1}^2+{A_2}^2+2A_1A_2\cos\left(\varphi_2-\varphi_1-2\pi\frac{r_2-r_1}{\lambda}\right)}$
+		\item $\Delta \varphi \rightarrow \Delta x:$\\
+		$\displaystyle
+		y=A\cos \left[\omega(t-\frac{x}{u})+\varphi\right]\\
+		\Phi = \omega(t-\frac{x}{u})+\varphi\\
+		\Delta \Phi = \left[\omega(t-\frac{x_1}{u})+\varphi\right] - \left[\omega(t-\frac{x_2}{u})+\varphi\right]
+		$\\
+		同一列波初相相同,t相同\\
+		$\displaystyle
+		\Delta \Phi = \omega\left(\frac{x_1-x_2}{u}\right) = \frac{2\pi}{T}\left(\frac{x_1-x_2}{u}\right) = 2\pi\frac{x_1-x_2}{\lambda}
+		$
+	\end{enumerate}
+	\section{气体动理论}
+	\subsection{平衡态}
+	\subsubsection{理想气体物态方程}
+	\begin{enumerate}
+		\item $pV=\hla{N}kT$：
+		\subitem $k$：玻尔兹曼常量($\mathrm{1.38\times10^{-23}J\cdot K^{-1}}$)
+		\subitem $N$：分子数量(个)
+		\item $pV=\nu RT$
+		\subitem $\nu = \frac{N}{N_A}$：物质的量(mol)
+		\subitem $R=N_Ak$：摩尔气体常量($\mathrm{8.31\mathrm{J}/(mol\cdot K)}$)
+		\item $pV=\frac{m'}{M}RT$
+		\subitem $m'=mN$：气体的总质量(kg)
+		\subitem $M=mN_A$：气体的摩尔质量(g/mol)
+		\subitem $\frac{m'}{M}=\frac{mN}{mN_A}=\frac{N}{N_A}=\nu$
+		\subitem $\hla{\rho=\frac{m'}{V}=\frac{pM}{RT}}$
+		\subitem $m=\frac{M}{N_A}$
+		\item $\hla{p=nkT}$
+		\subitem $\hla{n=\frac{N}{V}}$：\bfseries{分子数密度} （单位体积的分子数）
+		\subitem $n=\frac{p}{kT}$
+	\end{enumerate}
+	\subsection{物质的微观模型、统计规律性}
+	\subsection{理想气体的压强公式}
+	\subsubsection{理想气体的微观模型}
+	\begin{enumerate}
+		\item 分子线度与分子间距相比较可忽略：质点
+		\item 除碰撞外，分子间无相互作用：自由质点，没有势能
+		\item 碰撞为弹性碰撞：弹性质点
+	\end{enumerate}
+	\subsubsection{（平衡态）理想气体的统计假设}
+	\begin{enumerate}
+		\item 分子数密度处处相等（均匀分布）
+		\item 分子沿各个方向运动概率相同
+		\subitem 任意时刻向各个方向运动的分子数相同
+		\subitem 分子速度在各个方向分量的各种平均值相等
+		\subsubitem $\overline{v_x}=\overline{v_y}=\overline{v_z}$
+		\subsubitem $\overline{v^2_x}=\overline{v^2_y}=\overline{v^2_z}$
+	\end{enumerate}
+	\subsubsection{（平衡态）理想气体的压强公式}
+	\paragraph{推导压强公式的出发点}
+	\begin{enumerate}
+		\item 气体压强是大量分子不断碰撞容器壁的结果
+		\item 压强等于单位时间内容器壁上单位面积所受的平均冲量
+		\item 个别分子服从经典力学定律
+		\item 大量分子整体服从统计规律
+	\end{enumerate}
+	\paragraph{压强公式}
+	\begin{enumerate}
+		\item 一个分子i与容器壁A碰撞一次的冲量\\
+		$I=\Delta mv=2mv_{ix}$
+		\subitem $I' = -mv_{ix}-mv_{ix}=-2mv_{ix}$：对i分子冲量
+		\item 一个分子i与容器壁A碰撞一秒的次数\\
+		$f=\frac{1}{T}=\frac{v_x}{2x}$
+		\subitem $T=\frac{s}{v}=\frac{2x}{v_{ix}}$ :碰撞一次的间隔
+		\item 一个分子i与容器壁A碰撞一秒的冲量\\
+		$I=I\cdot f= 2mv_{ix} \cdot \frac{v_{ix}}{2x}=\frac{mv^2_{ix}}{x}$
+		\item 一个分子i与容器壁A碰撞的冲力\\
+		$F_i=\frac{I}{\Delta t}=\frac{\frac{mv^2_{ix}}{x}}{1}=\frac{mv^2_{ix}}{x}$
+		\item N个分子i与容器壁A碰撞的冲力\\
+		$\overline{F}=\sum_{i=1}^{N}F_i=\sum_{i=1}^{N}\frac{mv^2_{ix}}{x}$
+		\item N个分子i与容器壁A碰撞的压强\\
+		$\displaystyle
+		p
+		=\frac{\overline{F}}{S}
+		=\frac{\sum_{i=1}^{N}\frac{mv^2_{ix}}{x}}{yz}
+		=\sum_{i=1}^{N}\frac{mv^2_{ix}}{xyz}
+		=\frac{m}{V}\sum_{i=1}^{N}v^2_{ix}\\
+		=m\frac{N}{V}\frac{\sum_{i=1}^{N}v^2_{ix}}{N}\mbox{(上下同乘N)}\\
+		=m\hla{n\overline{v^2_{ix}}}
+		$
+		\subitem $N$：总分子数
+		\subitem $n = \frac{N}{V}$：分子数密度（单位体积的分子数）
+		\subitem $\overline{v^2_{ix}} = \frac{\sum_{i=1}^{N}v^2_{ix}}{N} $：速度分量平方的平均值
+		\item N个分子i与容器壁A碰撞的压强与分子总速度的关系\\
+		$p = mn\overline{v^2_{ix}} = \hla{\frac{1}{3}mn\overline{v^2}}$\\
+		$p=\frac{2}{3}n(\frac{1}{2}m\overline{v^2})=\hla{\frac{2}{3}n\overline{\varepsilon_k}}$
+		\subitem $\overline{v^2} = 3\overline{v^2_{ix}} $：\qquad 总速率平方的平均值
+		\subitem $\hla{\overline{\varepsilon_k}} = \frac{1}{2}m\overline{v^2}$：\quad (单个)分子平均\hl{平动}动能
+	\end{enumerate}
+	\paragraph{压强公式的物理意义}~{}\\
+	压强具有统计意义\\
+	将宏观量$p$和微观量$\overline{\varepsilon_k}$联系起来
+	\subsection{理想气体分子的平均平动动能与温度的关系}
+	\subsubsection{温度的微观解释}
+	\paragraph{理想气体的温度公式}
+	\begin{itemize}
+		\item 理想气体压强公式 $p=\frac{2}{3}n\overline{\varepsilon_k}$
+		\item 理想气体物态方程 $p=nkT$
+		\item 分子平均平动动能 $\frac{2}{3}n\overline{\varepsilon_k} = nkT\\
+		\hla{\overline{\varepsilon_k} = \frac{3}{2}kT}$
+	\end{itemize}
+	\paragraph{理想气体的物理意义}
+	\begin{enumerate}
+		\item 温度是分子平均平动动能的量度：统计平均值
+		\item 温度是大量分子的集体表现
+		\item 在同一温度下各种气体分子平均平动动能均相等
+	\end{enumerate}
+	\subsection{能量均分定理、理想气体的内能}
+	\subsubsection{自由度}
+	\subsubsection{能量均分定理}
+	\paragraph{(单个)分子平均总动能(平动动能+转动动能)}
+	\begin{enumerate}
+		\item 通式$\overline{\varepsilon}=\frac{i}{2}kT$
+		\item 单原子分子 $\overline{\varepsilon}=\frac{3}{2}kT=
+		\qquad\hla{\overline{\varepsilon_k}}$
+		\item 双原子分子 $\overline{\varepsilon}=\frac{5}{2}kT
+		\qquad=
+		\overbrace{\frac{3}{2}kT}
+		^{\mbox{已推导}}
+		+\frac{2}{2}kT
+		$
+		\item 多原子分子 $\overline{\varepsilon}=\frac{6}{2}kT
+		\qquad=
+		\overbrace{\frac{3}{2}kT}
+		^{\mbox{已推导}}
+		+\frac{3}{2}kT
+		$
+	\end{enumerate}
+	\subsubsection{理想气体的内能}
+	\paragraph{模型}
+	\paragraph{刚性分子理想气体内能}
+	\begin{enumerate}
+		\item $E_{mol} = 1N_A\cdot\overline{\varepsilon} = 1N_A\cdot\frac{i}{2}kT = 1\cdot\frac{i}{2}RT$:\qquad 1mol理想气体内能
+		\item $E_{\nu mol} = \nu N_A\cdot\overline{\varepsilon} = \nu N_A\cdot\frac{i}{2}kT = \hla{\nu\frac{i}{2}RT} = \frac{m'}{M}\frac{i}{2}RT$:\qquad $\nu$mol理想气体内能
+	\end{enumerate}
+	\paragraph{内能的改变量}
+	\begin{itemize}
+		\item $\Delta E = \frac{m'}{M}\frac{i}{2}R\Delta T$
+	\end{itemize}
+	\section{热力学基础}
+	\subsection{准静态过程\quad 功\quad 热量}
+	\subsubsection{准静态过程}
+	\subsubsection{功}
+	$$ W=Fl=PSl=pV $$
+	$$ W=\int_{V_1}^{V_2}p\ud V $$
+	\subsubsection{热量}
+	\paragraph{定义}系统与外界直接由于存在温度差而传递的能量
+	\paragraph{字母}$ Q $
+	\paragraph{类型}过程量
+	\subsection{热力学第一定律\quad 内能}
+	\subsubsection{内能}
+	\paragraph{定义}系统处于某状态而具有的能量
+	\paragraph{字母}$ E $
+	\subsubsection{热力学第一定律}
+	\paragraph{能量守恒定律}
+	$$ E_{\mbox{\zihao{7}(末)}}-E_{0\mbox{\zihao{7}(初)}} = 
+	\overbrace{Q}
+	^{\mbox{\zihao{6}外界向系统传递的热量}}
+	+
+	\overbrace{W^{ex}}
+	^{\mbox{\zihao{6}外界对系统做功}}
+	$$
+	$$
+	W^{ex}=
+	-\overbrace{W}
+	^{\mbox{\zihao{6}系统对外界做功}}
+	$$
+	\paragraph{热力学第一定律}
+	$$
+	\overbrace{Q}
+	^{\mbox{\zihao{6}外界向系统传递的热量}}
+	=
+	\overbrace{W}
+	^{\mbox{\zihao{6}系统对外界做功}}
+	+
+	\overbrace{E-E_0}
+	^{\mbox{\zihao{6}系统内能变化}}
+	=W+\Delta E 
+	$$
+	$$ \ud Q = \ud W + \ud E$$
+	\subsection{理想气体的等体过程和等压过程\quad 摩尔热容}
+	\subsubsection{等体过程\quad 摩尔定容热容}
+%	\begin{spacing}{1.0}
+\paragraph{原始公式}
+	\begin{eqnarray}
+	W&=&\int_{V_1}^{V_2}p\ud V\\
+	\ud Q&=&
+	\overbrace{\ud W}
+	^{
+		\parbox[t][0.5cm]{1.1cm}{
+			\centering
+			\begin{spacing}{1}
+			\zihao{6}
+			等体过程\\此项为0
+			\end{spacing}
+	}
+	}
+	+\ud E\\
+	Q_V&=&
+	\ud E\\
+	Q_{V,m}&=&
+	\ud E_m\\
+	\dfrac{\ud Q_{V,m}}{\ud T} &=& 
+	\dfrac{\ud E_m}{\ud T}
+	\end{eqnarray}
+	\paragraph{对等式右边展开}
+	\begin{subeqnarray}	
+	C_{V,m} &=&\dfrac{\ud E_m}{\ud T}\\
+	C_{V,m}\ud T &=& \ud E_m\\
+	\hla{\nu C_{V,m}\ud T} &=& \hla{\ud E}\\
+	C_{V,m}\ud T	&=&
+	\overbrace{\frac{i}{2}RT}
+	^{
+		\parbox[t][0.5cm]{1.5cm}{
+			\begin{spacing}{1}
+				\centering
+				\zihao{6}
+				单个分子\\内能公式
+			\end{spacing}
+		}
+	}
+	\\
+	C_{V,m}	&=&\hla{\frac{i}{2}R}
+	\end{subeqnarray}	
+	\paragraph{对等式左边展开}
+	\begin{subeqnarray}
+	C_{V,m}&=&\dfrac{\ud Q_{V,m}}{\ud T}\\
+	C_{V,m}\ud T&=&\ud Q_{V,m}\\
+	C_{V,m}\ud T&=&\dfrac{\ud Q_{V}}{\nu}\\
+	\nu C_{V,m}\ud T&=&\ud Q_{V}\\
+	\hla{\nu C_{V}(T_2-T_1)}&=&Q_{V}
+	\end{subeqnarray}
+	\begin{subeqnarray}
+		\nu C_{V}\ud T&=&\ud E\\
+	\end{subeqnarray}
+\subsubsection{等压过程\quad 摩尔定压热容}
+\paragraph{原始公式}
+	\begin{eqnarray}
+		\ud Q &=& \ud W + \ud E\\
+		\ud Q_P &=& \ud W + \ud E\\
+		\ud Q_P &=& p\ud V + \ud E\\
+		\ud Q_{P,m} &=& p\ud V + \ud E_m\\
+		\dfrac{\ud Q_{P,m}}{\ud T} &=& \dfrac{p\ud V + \ud E_m}{\ud T}
+	\end{eqnarray}	
+	\paragraph{对等式右边展开}
+	\begin{subeqnarray}
+		C_{p,m} &=& \dfrac{
+			\overbrace{p}^{
+				\mbox{\zihao{6}为\hl{常数}}
+			}
+			\ud V}{\ud T}+\dfrac{\ud E_m}{\ud T}\\
+		\
+		C_{p,m} &=& 
+		\overbrace{R}^{
+			\parbox[t][0.8cm]{1.6cm}{
+				\begin{spacing}{1}
+				\zihao{6}
+				$pV=RT$
+				\\
+				两边取微分
+				\\
+				$p\ud V = R \ud T$
+				\end{spacing}
+			}
+		}
+		 + C_{V,m}\\
+		C_{p,m} &=& R + \dfrac{i}{2}R\\
+		C_{p,m} &=& \hla{\dfrac{i+2}{2}R}
+	\end{subeqnarray}
+	\paragraph{对等式左边展开}
+	\begin{subeqnarray}	
+		C_{p,m} &=& \dfrac{\ud Q_{p,m}}{\ud T}\\
+		C_{p,m}\ud T &=& \ud Q_{p,m}\\
+		C_{p,m}\ud T&=&\dfrac{\ud Q_{p}}{\nu}\\
+		\nu C_{p,m}\ud T&=&\ud Q_{p}\\
+		\hla{\nu C_{P}(T_2-T_1)}&=&Q_{p}
+	\end{subeqnarray}
+	\begin{subeqnarray}	
+		Q_P &=& \int_{V_1}^{V_2}p\ud V + \Delta E\\
+		Q_P &=& p(V_2-V_1) + E_2-E_1\\
+		Q_P &=& p(V_2-V_1) + \nu C_{V,m}(T_2-T_1)\\
+		Q_P &=& \nu C_{p,m}(T_2-T_1)
+	\end{subeqnarray}
+%\end{spacing}
+	\subsection{理想气体的等温过程和绝热过程}
+	\subsubsection{等温过程}
+	\paragraph{原始公式}
+	\begin{eqnarray}
+	\ud Q &=& \ud W + 
+	\overbrace{\ud E}
+	^{
+		\parbox[t][0.5cm]{1.1cm}{
+			\centering
+			\begin{spacing}{1}
+			\zihao{6}
+			等温过程\\此项为0
+			\end{spacing}
+		}
+	}\\
+	\ud Q_T &=& \ud W_T\\
+	\ud W_T &=& p\ud V\\
+	\ud W_T &=& 
+	\overbrace{\dfrac{\nu RT}{V}}
+	^{
+		\parbox[t][0.2cm]{1.1cm}{
+			\centering
+			\begin{spacing}{1}
+			\zihao{6}
+			状态方程
+			\end{spacing}
+		}
+	}
+	\ud V\\
+	\int_{W_1}^{W_2}\ud W_T &=& \int_{V_1}^{V_2}
+	\dfrac{\nu RT}{V}
+	\ud V\\
+	W_T &=& \nu RT\int_{V_1}^{V_2}\dfrac{1}{V}\ud V\\
+	W_T &=& \nu RT\ln\dfrac{V_2}{V_1}\\
+	W_T &=& \nu RT\ln\dfrac{p_1}{p_2}\\
+	\end{eqnarray}
+	\subsubsection{绝热过程}
+	\paragraph{前提公式}
+	\begin{eqnarray}
+	pV &=& \nu RT\\
+	\ud p \cdot V + p\ud V &=& \nu R\ud T\\
+	C_{V,m}\ud p \cdot V + C_{V,m}p\ud V &=& C_{V,m}\nu R\ud T
+	\end{eqnarray}
+	\paragraph{原始公式}
+	\begin{eqnarray}
+	\overbrace{\ud Q}
+	^{
+		\parbox[t][0.5cm]{1.1cm}{
+			\centering
+			\begin{spacing}{1}
+			\zihao{6}
+			绝热过程\\此项为0
+			\end{spacing}
+		}
+	}
+	&=& \ud W + \ud E\\
+	0 &=& \ud W_a + \ud E\\
+	0 &=& p\ud V + \nu C_{V,m}\ud T(6c)\\
+	\nu C_{V,m}\ud T &=& -p\ud V
+	\end{eqnarray}
+	\paragraph{代入前提公式}
+	\begin{eqnarray}
+	C_{V,m}\ud p \cdot V + C_{V,m}p\ud V &=& C_{V,m}\nu R\ud T\\
+	C_{V,m}\ud p \cdot V + C_{V,m}p\ud V &=& -pR\ud V\\	
+	C_{V,m}\ud p \cdot V  &=& - C_{V,m}p\ud V+pR\ud V\\	
+	C_{V,m}\ud p \cdot V  &=& - (C_{V,m}+R)p\ud V\\	
+	\dfrac{C_{V,m}}{(C_{V,m}+R)}\dfrac{\ud p}{p}  &=& - \dfrac{\ud V}{V}\\	
+	\dfrac{C_{V,m}}{(C_{p,m})}\dfrac{\ud p}{p}  &=& - \dfrac{\ud V}{V}\\	
+	-\dfrac{\ud p}{p}  &=&  \gamma\dfrac{\ud V}{V}\\	
+	-\ln p  &=&  \gamma\ln V+C\\	
+	C  &=&  \gamma\ln V+\ln p\\	
+	C  &=&  \ln V^\gamma+\ln p\\	
+	C  &=&  \ln( V^\gamma p)\\	
+	C_1  &=&   \hla{V^\gamma p}
+	\end{eqnarray}
+	\begin{subeqnarray}	
+		V^{\gamma-1}T &=& C_2\\
+		p^{\gamma-1}T^{-\gamma} &=& C_3
+	\end{subeqnarray}	
+	
+\end{document}

@@ -1,0 +1,106 @@
+\documentclass[UTF8,a4paper,12pt,scheme=chinese]{ctexbook}
+
+%\setlength{\textwidth}{550pt}
+%\setlength{\hoffset}{-1.2in}
+%\setlength{\voffset}{-1in}
+
+\usepackage{amsmath}
+\usepackage{textcomp} 
+\usepackage{graphicx}
+\usepackage{xcolor}
+
+%\linespread{1.6}
+
+\newcommand{\hlx}[2]{%
+	\IfEqCase{#1}{%
+		{1}{
+			\colorbox{yellow!50}{$\displaystyle#2$}
+		}
+		{b}{
+			\colorbox{yellow!50}{$\scriptstyle#2$}
+		}
+		{3}{
+			\colorbox{yellow!50}{$\scriptscriptstyle#2$}
+		}
+	}
+		% you can add more cases here as desired
+	
+}%
+
+
+%\pagestyle{headings}
+\ctexset{
+	section={
+		name={,},
+		numberformat=\sffamily,
+		format=\youyuan\large ,
+		number=\arabic{chapter}-\arabic{section},
+		},
+	subsection={
+		name={,},
+		format=\normalsize\flushleft\CJKfamily{zhsong}\bfseries,
+		number=\chinese{subsection}、,
+	},
+}
+
+
+\newcommand{\ud}{\mathrm{d}}
+\newcommand{\lc}{\left(}
+\newcommand{\rc}{\right)}
+
+\newcommand{\hl}[1]{\colorbox{yellow}{#1}}
+\newcommand{\hla}[1]{%
+	\colorbox{yellow!50}{$\displaystyle#1$}}
+\newcommand{\hlb}[1]{%
+	\colorbox{yellow!50}{$\scriptstyle#1$}}
+\newcommand{\hlc}[1]{%
+	\colorbox{yellow!50}{$\scriptscriptstyle#1$}}
+
+\makeatletter
+\DeclareFontFamily{U}{tipa}{}
+\DeclareFontShape{U}{tipa}{m}{n}{<->tipa10}{}
+\newcommand{\arc@char}{{\usefont{U}{tipa}{m}{n}\symbol{62}}}%
+
+\newcommand{\arc}[1]{\mathpalette\arc@arc{#1}}
+
+\newcommand{\arc@arc}[2]{%
+	\sbox0{$\m@th#1#2$}%
+	\vbox{
+		\hbox{\resizebox{\wd0}{\height}{\arc@char}}
+		\nointerlineskip
+		\box0
+	}%
+}
+\makeatother
+
+\begin{document}
+	\begin{Large}
+		\chapter{振动}
+		\section{简谐振动、振幅、周期和频率、相位}
+		\section{旋转矢量}
+		\section{单摆和复摆}
+		\section{简谐振动的能量}
+		\section{简谐振动的合成}
+		\chapter{波动}
+		\section{机械波的几个概念}
+		\section{平面简谐波的波函数}
+		\subsection{平面简谐波的波函数}
+		\section{波的能量、能流密度}
+		\section{惠更斯原理、波的衍射和干涉}
+		\subsection{惠更斯原理}
+		\subsection{波的衍射}
+		\subsection{波的干涉}
+		$\displaystyle\\
+		\Delta \varphi \rightarrow \Delta x:\\
+		y=A\cos \left[\omega(t-\frac{x}{u})+\varphi\right]\\
+		\Phi = \omega(t-\frac{x}{u})+\varphi\\
+		\Delta \Phi = \left[\omega(t-\frac{x_1}{u})+\varphi\right] - \left[\omega(t-\frac{x_2}{u})+\varphi\right]
+		$\\
+		同一列波初相相同,t相同\\
+		$\displaystyle
+		\Delta \Phi = \omega\left(\frac{x_1-x_2}{u}\right) = \frac{2\pi}{T}\left(\frac{x_1-x_2}{u}\right) = 2\pi\frac{x_1-x_2}{\lambda}
+		$
+		\chapter{气体动理论}
+	\end{Large}
+
+\end{document}

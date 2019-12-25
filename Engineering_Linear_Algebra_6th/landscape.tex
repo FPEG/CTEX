@@ -1,0 +1,100 @@
+\documentclass[UTF8,a4paper,12pt,scheme=chinese]{ctexbook}
+
+%\setlength{\textwidth}{550pt}
+%\setlength{\hoffset}{-1.2in}
+%\setlength{\voffset}{-1in}
+\newlength{\chaptertopskip}
+\setlength{\chaptertopskip}{10pt}
+
+\usepackage{amsmath}
+\usepackage{textcomp} 
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{amsthm}
+\usepackage{longtable}
+\usepackage{makecell}
+%\usepackage{slashbox}
+\usepackage{diagbox}
+\newcommand{\hlx}[2]{%
+	\IfEqCase{#1}{%
+		{1}{
+			\colorbox{yellow!50}{$\displaystyle#2$}
+		}
+		{b}{
+			\colorbox{yellow!50}{$\scriptstyle#2$}
+		}
+		{3}{
+			\colorbox{yellow!50}{$\scriptscriptstyle#2$}
+		}
+	}
+		% you can add more cases here as desired
+	
+}%
+
+
+\newcommand{\ud}{\mathrm{d}}
+\newcommand{\lc}{\left(}
+\newcommand{\rc}{\right)}
+\newcommand{\jz}[1]{\boldsymbol{#1}}
+
+\newcommand{\hl}[1]{\colorbox{yellow}{#1}}
+\newcommand{\hla}[1]{%
+	\colorbox{yellow!50}{$\displaystyle#1$}}
+\newcommand{\hlb}[1]{%
+	\colorbox{yellow!50}{$\scriptstyle#1$}}
+\newcommand{\hlc}[1]{%
+	\colorbox{yellow!50}{$\scriptscriptstyle#1$}}
+
+%\makeatletter
+%\DeclareFontFamily{U}{tipa}{}
+%\DeclareFontShape{U}{tipa}{m}{n}{<->tipa10}{}
+%\newcommand{\arc@char}{{\usefont{U}{tipa}{m}{n}\symbol{62}}}%
+%
+%\newcommand{\arc}[1]{\mathpalette\arc@arc{#1}}
+%
+%\newcommand{\arc@arc}[2]{%
+%	\sbox0{$\m@th#1#2$}%
+%	\vbox{
+%		\hbox{\resizebox{\wd0}{\height}{\arc@char}}
+%		\nointerlineskip
+%		\box0
+%	}%
+%}
+\everymath{\displaystyle}
+\newtheorem{theorem}{定理}[section]
+\newtheorem*{theorem*}{非书定理}
+%\theoremstyle{plain}
+\newtheorem{definition}{定义}[section]
+
+\makeatother
+
+\usepackage{pdflscape}
+
+\begin{document}
+	\begin{landscape}
+		\begin{longtable}{|c|c|c|c|c|c|}
+			\hline 
+			& 转置 & 行列式 & 逆 & 伴随 & 秩
+			\\\hline  
+			$ \jz{A}^T $ & $ (\jz{A}^T)^T=A $ & $ |\jz{A}^T|=|\jz{A}| $ & $ (\jz{A}^T)^{-1} = (\jz{A}^{-1})^T $ & $ (\jz{A}^T)^*=(\jz{A}^*)^T $ & $ R(\jz{A}) $
+			\\\hline 
+			$ |\jz{A}| $ & 无  & 无 & $ |\jz{A}|^{-1}=|\jz{A}^{-1}| $& 无 & 无
+			\\\hline
+			$ \jz{A}^{-1} $ & $ (\jz{A}^{-1})^T = (\jz{A}^T)^{-1} $ & $ |\jz{A}^{-1}|=|\jz{A}|^{-1} $ & $ (\jz{A}^{-1})^{-1}=\jz{A} $ & $ (\jz{A}^{-1})^*=(\jz{A}^*)^{-1}$ & 满秩$ R(\jz{A}) $
+			\\\hline
+			$ \jz{A}^* $ & $ (\jz{A}^*)^T=(\jz{A}^T)^* $ & $ |\jz{A}^*|=|\jz{A}|^{n-1} $ & $ (\jz{A}^*)^{-1}=(\jz{A}^{-1})^*=\frac{\jz{A}}{|\jz{A}|} $ & $ (\jz{A}^*)^*=|\jz{A}|^{n-2}\jz{A} $ & 讨论
+			\\\hline
+			$ \jz{A}\pm\jz{B} $ & $ (\jz{A}\pm\jz{B})^T=\jz{A}^T\pm\jz{B}^T $ & 无 & 无 & 无 & $ \leq R(\jz{A})\pm R(\jz{B}) $
+			\\\hline
+			$ \lambda\jz{A} $ & $ (\lambda\jz{A})^T=\lambda\jz{A}^T $ & $ |\lambda\jz{A}|=\lambda^n|\jz{A}| $ & $ (\lambda\jz{A})^{-1}=\frac{1}{\lambda}\jz{A}^{-1} $ & $ (\lambda\jz{A})^*=\lambda^{n-1}\jz{A}^* $ & $ R(\jz{A}) $
+			\\\hline
+			$ \jz{A}\jz{B} $ & $ (\jz{A}\jz{B})^T=\jz{B}^T\jz{A}^T $ & \makecell{$ |\jz{A}\jz{B}|=|\jz{B}\jz{A}|$\\$=|\jz{A}||\jz{B}|=|\jz{B}||\jz{A}| $} & $ (\jz{A}\jz{B})^{-1}=\jz{B}^{-1}\jz{A}^{-1} $ & $ (\jz{A}\jz{B})^*=\jz{B}^*\jz{A}^* $ & $ \leq \min\{R(\jz{A}),R(\jz{B})\} $
+			\\\hline
+			对称$ \jz{A}\jz{B} $ & \makecell{$ (\jz{A}\jz{B})^T=\jz{A}\jz{B}=\jz{B}\jz{A} $\\$ (\jz{A}\jz{B})^T=\jz{B}^T\jz{A}^T=\jz{A}^T\jz{B}^T $}&同上&同上&&
+			\\\hline
+			$ \jz{\varLambda} $ &&&&&
+			\\\hline
+		\end{longtable}
+	\end{landscape}
+\end{document}
+

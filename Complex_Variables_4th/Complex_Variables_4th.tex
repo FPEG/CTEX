@@ -1,0 +1,170 @@
+\documentclass[UTF8,a4paper,12pt,scheme=chinese]{ctexbook}
+
+\addtolength{\textwidth}{1in}
+\addtolength{\hoffset}{-0.5in}
+%\setlength{\voffset}{-1in}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{textcomp} 
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{mathrsfs}
+\usepackage{tikz}
+\usepackage{amsthm}
+%\usepackage{soul}
+\usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,positioning,fit,petri}
+
+%\usepackage{latexsym}
+
+\newcommand{\hlx}[2]{%
+	\IfEqCase{#1}{%
+		{1}{
+			\colorbox{yellow!50}{$\displaystyle#2$}
+		}
+		{b}{
+			\colorbox{yellow!50}{$\scriptstyle#2$}
+		}
+		{3}{
+			\colorbox{yellow!50}{$\scriptscriptstyle#2$}
+		}
+	}
+	% you can add more cases here as desired
+	
+}%
+
+
+%\pagestyle{headings}
+%\ctexset{
+
+%}
+\pagestyle{headings}
+\ctexset{
+	%	section={	
+	%		name={第,章},
+	%		number=\arabic{section},
+	%	},
+	section={
+		name={\S,},
+		number=\arabic{section},
+	},
+	subsection={
+		name={,},
+		number=\arabic{subsection}.,
+	},
+	subsubsection/name = {},
+	subsubsection={
+		%		name={asd,啊},
+		number=\arabic{subsubsection}.,
+		aftername={},
+		format=\Large\bfseries\CJKfamily{zhsong},
+	},
+	paragraph={
+		%		name={asd,啊},
+		%		number=\arabic{subsubsection},
+		format=\bfseries\youyuan,
+	},
+}
+\setcounter{secnumdepth}{3}
+\newcommand{\ud}{\mathrm{d}}
+\newcommand{\Arg}{\mathrm{Arg}}
+\newcommand{\lc}{\left(}
+\newcommand{\rc}{\right)}
+
+\newcommand{\hl}[1]{\colorbox{yellow}{#1}}
+\newcommand{\hla}[1]{%
+	\colorbox{yellow!50}{$\displaystyle#1$}}
+\newcommand{\hlb}[1]{%
+	\colorbox{yellow!50}{$\scriptstyle#1$}}
+\newcommand{\hlc}[1]{%
+	\colorbox{yellow!50}{$\scriptscriptstyle#1$}}
+
+\makeatletter
+\DeclareFontFamily{U}{tipa}{}
+\DeclareFontShape{U}{tipa}{m}{n}{<->tipa10}{}
+\newcommand{\arc@char}{{\usefont{U}{tipa}{m}{n}\symbol{62}}}%
+
+\newcommand{\arc}[1]{\mathpalette\arc@arc{#1}}
+
+\newcommand{\arc@arc}[2]{%
+	\sbox0{$\m@th#1#2$}%
+	\vbox{
+		\hbox{\resizebox{\wd0}{\height}{\arc@char}}
+		\nointerlineskip
+		\box0
+	}%
+}
+
+\everymath{\displaystyle}
+%\newtheorem{btheorem}{b定理}[section]
+\newtheorem{theorem}{定理}[chapter]
+%\renewcommand{\theorem}{\arabic{subsection}.\arabic{thm}}
+\newtheorem*{theorem*}{非书定理}
+\theoremstyle{plain}
+\newtheorem{definition}{定义}[section]
+\newtheorem{property}{性质}[subsection]
+\makeatother
+
+\begin{document}
+	\chapter{复数与复变函数}
+	\section{复数及其代数运算}
+	\subsection{复数的概念}
+	\subsection{复数的代数运算}
+	\paragraph{共轭复数}$\left\lbrace
+	\begin{array}{l} \overline{z_1\pm z_2}=\overline{z_1}\pm\overline{z_2}\\\overline{z_1\cdot z_2}=\overline{z_1}\cdot\overline{z_2}
+	\end{array}
+	\right. $
+	\section{复数的几何表示}
+	\subsection{复平面}
+	\paragraph{绝对值、模} $\left\lbrace
+	\begin{array}{l} |z|=r=\sqrt{x(a)^2+y(b)^2}\\z\overline{z}=|z|^2=|z^2|
+	\end{array}
+	\right. $
+	\paragraph{幅角}$ \Arg z=\theta $ , $ \tan(\Arg z) = \dfrac{y}{x} $
+	\paragraph{主值}$ \arg z=\theta_0(-\pi<\Arg z\leqslant\pi) $
+	\paragraph{加减}与向量一致
+	\paragraph{三角表达式}$ z=r(\cos\theta+i\sin\theta) $
+	\paragraph{欧拉公式}$ e^{i\theta}=\cos\theta+i\sin\theta $
+	\paragraph{指数表达式}$ z=re^{i\theta} $
+	\paragraph{其他证明}$\left\lbrace
+	\begin{array}{l} |z_1\overline{z_2}|=|z_1||z_2|\\
+	|z_1+z_2|\leqslant|z_1|+|z_2|
+	\end{array}
+	\right. $
+	\subsection{复球面}
+	\paragraph{北极}在上面
+	\paragraph{复球面}
+	\paragraph{扩充复平面}包含无穷远点
+	\section{复数的乘幂与方根}
+	\subsection{乘积与商}
+	\begin{theorem}
+		$\left\lbrace
+		\begin{array}{l} 
+		|z_1z_2|=|z_1||z_2|\\
+		\Arg(z_1z_2)=\Arg(z_1)+\Arg(z_2)\\
+		z_1z_2=r_1r_2e^{i(\theta_2+\theta_1)}
+		\end{array}
+		\right. $
+	\end{theorem}
+	\paragraph{乘法几何意义}乘以长度并逆时针旋转
+	\begin{theorem}
+		$\left\lbrace
+		\begin{array}{l} 
+		\left| \dfrac{z_2}{z_1}\right| =\dfrac{|z_2|}{|z_1|}\\
+		\Arg\left( \dfrac{z_2}{z_1}\right) =\Arg(z_2)-\Arg(z_1)\\
+		\dfrac{z_2}{z_1}=\dfrac{r_2}{r_1}e^{i(\theta_2-\theta_1)}
+		\end{array}
+		\right. $
+	\end{theorem}
+	\paragraph{除法几何意义}除以长度并顺时针旋转
+	\subsection{幂与根}
+	\paragraph{n次幂}$ z^n=r^n(\cos n\theta+i\sin n\theta) $
+	\paragraph{棣莫弗公式}$ (\cos\theta+i\sin\theta)^n=\cos n\theta+i\sin n\theta $
+	\paragraph{n次根}$ s$
+	\section{区域}
+	\section{复变函数}
+	\section{复变函数的极限和连续性}
+	\chapter{解析函数}
+	\section{解析函数的概念}
+	
+\end{document}

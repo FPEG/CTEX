@@ -1,0 +1,478 @@
+\documentclass[UTF8,a4paper,12pt,scheme=chinese]{ctexbook}
+
+%\setlength{\textwidth}{550pt}
+%\setlength{\hoffset}{-1.2in}
+%\setlength{\voffset}{-1in}
+\newlength{\chaptertopskip}
+\setlength{\chaptertopskip}{10pt}
+
+\usepackage{amsmath}
+\usepackage{textcomp} 
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{amsthm}
+\usepackage{longtable}
+\usepackage{makecell}
+%\usepackage{slashbox}
+\usepackage{diagbox}
+\newcommand{\hlx}[2]{%
+	\IfEqCase{#1}{%
+		{1}{
+			\colorbox{yellow!50}{$\displaystyle#2$}
+		}
+		{b}{
+			\colorbox{yellow!50}{$\scriptstyle#2$}
+		}
+		{3}{
+			\colorbox{yellow!50}{$\scriptscriptstyle#2$}
+		}
+	}
+		% you can add more cases here as desired
+	
+}%
+
+
+\newcommand{\ud}{\mathrm{d}}
+\newcommand{\lc}{\left(}
+\newcommand{\rc}{\right)}
+\newcommand{\jz}[1]{\boldsymbol{#1}}
+
+\newcommand{\hl}[1]{\colorbox{yellow}{#1}}
+\newcommand{\hla}[1]{%
+	\colorbox{yellow!50}{$\displaystyle#1$}}
+\newcommand{\hlb}[1]{%
+	\colorbox{yellow!50}{$\scriptstyle#1$}}
+\newcommand{\hlc}[1]{%
+	\colorbox{yellow!50}{$\scriptscriptstyle#1$}}
+
+%\makeatletter
+%\DeclareFontFamily{U}{tipa}{}
+%\DeclareFontShape{U}{tipa}{m}{n}{<->tipa10}{}
+%\newcommand{\arc@char}{{\usefont{U}{tipa}{m}{n}\symbol{62}}}%
+%
+%\newcommand{\arc}[1]{\mathpalette\arc@arc{#1}}
+%
+%\newcommand{\arc@arc}[2]{%
+%	\sbox0{$\m@th#1#2$}%
+%	\vbox{
+%		\hbox{\resizebox{\wd0}{\height}{\arc@char}}
+%		\nointerlineskip
+%		\box0
+%	}%
+%}
+\everymath{\displaystyle}
+\newtheorem{theorem}{定理}[section]
+\newtheorem*{theorem*}{非书定理}
+%\theoremstyle{plain}
+\newtheorem{definition}{定义}[section]
+
+\makeatother
+
+\begin{document}
+	\chapter{行列式}
+	\chapter{矩阵及其运算}
+	\section{矩阵的幂}
+	\begin{longtable}{|c|c|c|c|}
+		\hline 
+		 & 转置 & 行列式 & 逆 
+		\\\hline  
+		$ \jz{A}^T $ & $ (\jz{A}^T)^T=A $ & $ |\jz{A}^T|=|\jz{A}| $ & $ (\jz{A}^T)^{-1} = (\jz{A}^{-1})^T $ 
+		\\\hline 
+		$ |\jz{A}| $ & 无  & 无 & $ |\jz{A}|^{-1}=|\jz{A}^{-1}| $
+		\\\hline
+		$ \jz{A}^{-1} $ & $ (\jz{A}^{-1})^T = (\jz{A}^T)^{-1} $ & $ |\jz{A}^{-1}|=|\jz{A}|^{-1} $ & $ (\jz{A}^{-1})^{-1}=\jz{A} $
+		\\\hline
+		$ \jz{A}\pm\jz{B} $ & $ (\jz{A}\pm\jz{B})^T=\jz{A}^T\pm\jz{B}^T $ & 无 & 无
+		\\\hline
+		$ \lambda\jz{A} $ & $ (\lambda\jz{A})^T=\lambda\jz{A}^T $ & $ |\lambda\jz{A}|=\lambda^n|\jz{A}| $ & $ (\lambda\jz{A})^{-1}=\frac{1}{\lambda}\jz{A}^{-1} $
+		\\\hline
+		$ \jz{A}\jz{B} $ & $ (\jz{A}\jz{B})^T=\jz{B}^T\jz{A}^T $ &
+		\makecell{$ |\jz{A}\jz{B}|=|\jz{B}\jz{A}|$\\$=|\jz{A}||\jz{B}|=|\jz{B}||\jz{A}| $} 
+		& $ (\jz{A}\jz{B})^{-1}=\jz{B}^{-1}\jz{A}^{-1} $
+		\\\hline
+		对称$ \jz{A}\jz{B} $ & \makecell{$ (\jz{A}\jz{B})^T=\jz{A}\jz{B}=\jz{B}\jz{A} $\\$ (\jz{A}\jz{B})^T=\jz{B}^T\jz{A}^T=\jz{A}^T\jz{B}^T $}&同上&同上
+		\\\hline
+		$ \jz{A}^* $ & $ (\jz{A}^*)^T=(\jz{A}^T)^* $ & $ |\jz{A}^*|=|\jz{A}|^{n-1} $ & $ (\jz{A}^*)^{-1}=(\jz{A}^{-1})^*=\frac{\jz{A}}{|\jz{A}|} $
+		\\\hline
+		$ \jz{\varLambda} $ &&&
+		\\\hline
+	\end{longtable}
+		\begin{longtable}{|c|c|c|c|}
+		\hline 
+		& 伴随 & 秩 &  
+		\\\hline  
+		$ \jz{A}^T $ & $ (\jz{A}^T)^*=(\jz{A}^*)^T $ & $ R(\jz{A}) $  &   
+		\\\hline 
+		$ |\jz{A}| $ & 无 & 无 &  
+		\\\hline
+		$ \jz{A}^{-1} $ & $ (\jz{A}^{-1})^*=(\jz{A}^*)^{-1}$ & 满秩$ R(\jz{A}) $ &  
+		\\\hline
+		$ \jz{A}\pm\jz{B} $ & 无 & $ \leq R(\jz{A})\pm R(\jz{B}) $ &
+		\\\hline
+		$ \lambda\jz{A} $ & $ (\lambda\jz{A})^*=\lambda^{n-1}\jz{A}^* $ & $ R(\jz{A}) $ &
+		\\\hline
+		$ \jz{A}\jz{B} $ & $ (\jz{A}\jz{B})^*=\jz{B}^*\jz{A}^* $ & $ \leq \min\{R(\jz{A}),R(\jz{B})\} $ &
+		\\\hline
+		对称$ \jz{A}\jz{B} $ &  &  &  
+		\\\hline
+		$ \jz{A}^* $ & $ (\jz{A}^*)^*=|\jz{A}|^{n-2}\jz{A} $ & 讨论 &  
+		\\\hline
+		$ \jz{\varLambda} $ &&&
+		\\\hline
+	\end{longtable}	
+	\begin{longtable}{|c|c|c|}
+		\hline
+		& 逆 & 幂\\
+		\hline
+		 $ \left[\begin{array}{cc}
+		a&b\\
+		c&d
+		\end{array}\right]   $ & $ \hla{\frac{1}{a d-b c}}		
+		\left(
+		\begin{array}{cc}
+		d & -b \\
+		-c & a \\
+		\end{array}
+		\right) $ & 复杂\\
+		\hline
+		
+		
+	\end{longtable}
+	\begin{enumerate}
+		\item $\left(
+		\begin{array}{cc}
+		1 & 1 \\
+		0 & 1 \\
+		\end{array}
+		\right)^n=\left(
+		\begin{array}{cc}
+		1 & n \\
+		0 & 1 \\
+		\end{array}
+		\right)$
+		\item $\left(
+		\begin{array}{cc}
+		1 & 0 \\
+		1 & 1 \\
+		\end{array}
+		\right)^n=\left(
+		\begin{array}{cc}
+		1 & 0 \\
+		n & 1 \\
+		\end{array}
+		\right)$
+		\item $
+		\left(
+		\begin{array}{cc}
+		a & 0 \\
+		0 & b \\
+		\end{array}
+		\right)^n=
+		\left(
+		\begin{array}{cc}
+		a^n & 0 \\
+		0 & b^n \\
+		\end{array}
+		\right)
+		$
+		\item $
+		\left(
+		\begin{array}{ccc}
+		0 & 0 & a \\
+		0 & b & 0 \\
+		c & 0 & 0 \\
+		\end{array}
+		\right)^{-1}
+		=
+		\left(
+		\begin{array}{ccc}
+		0 & 0 & a^{-1} \\
+		0 & b^{-1} & 0 \\
+		c^{-1} & 0 & 0 \\
+		\end{array}
+		\right)^T
+		$\\
+		如果对分块矩阵使用，需要先证分块矩阵可逆
+		\item $
+		\left(
+		\begin{array}{cc}
+		a & b \\
+		c & d \\
+		\end{array}
+		\right)
+		=		
+		\hla{\frac{1}{a d-b c}}		
+		\left(
+		\begin{array}{cc}
+		d & -b \\
+		-c & a \\
+		\end{array}
+		\right)
+		$
+	\end{enumerate}
+	\chapter{矩阵的初等变换与线性方程组}
+	\section{矩阵的初等变换}
+	\subsection{矩阵.初等行变换()}
+%	\begin{definition}[初等行变换]~{}\\
+%		
+%		\begin{enumerate}
+%			\item 对换两行
+%			\item 一行乘以k
+%			\item 倍加行
+%		\end{enumerate}
+%	\end{definition}
+	\begin{enumerate}
+		\item 重载\quad 对换两行
+		\item 重载\quad 一行乘以k
+		\item 重载\quad 行加行
+	\end{enumerate}
+	\subsection{矩阵.等价($ \boldsymbol{A},\boldsymbol{B} $)}
+	\begin{itemize}
+		\item 参数
+		\begin{itemize}
+			\item 矩阵$ \boldsymbol{A} $
+			\item 矩阵$ \boldsymbol{B} $
+		\end{itemize}
+		\item 返回
+		\begin{itemize}
+			\item A等价B
+			\begin{itemize}
+				\item 条件\quad 矩阵.初等行变换($ \boldsymbol{A} $)=$ \boldsymbol{B} $
+			\end{itemize}
+			\item 否
+		\end{itemize}
+	\end{itemize}
+	\subsection{矩阵.化为行阶梯形($ \boldsymbol{A} $)}
+	\begin{definition}[行阶梯形矩阵,行最简形矩阵]
+		
+	\end{definition}
+	\subsection{矩阵.化为行最简形($ \boldsymbol{A} $)}
+	一对一关系
+	\subsection{矩阵.化为标准形($ \boldsymbol{A} $)}
+	\begin{theorem}[矩阵等价的充要条件]
+		content...
+	\end{theorem}
+	\section{矩阵的秩}
+	\chapter{向量组的线性相关性}
+	\section{向量组及其线性组合}
+	\subsection{n维向量}
+	\begin{itemize}
+		\item 定义：n个有次序的数所组成的数组
+		\item 子类
+		\begin{enumerate}
+			\item 列向量 $\boldsymbol{a}$
+			\item 行向量 $\boldsymbol{a}^T$
+		\end{enumerate}
+		\item 成员
+		\subitem 分量 $a_i$：n个
+	\end{itemize}
+	\subsection{向量组}
+	\begin{itemize}
+		\item 定义：若干个同维数的向量所组成的集合
+		\item 格式：$A:\boldsymbol{a}_1,\boldsymbol{a}_2,\dots,\boldsymbol{a}_n$
+		\item 成员
+		\subitem 向量 $\boldsymbol{a}_i$：若干个
+		\item 方法
+		\begin{enumerate}
+			\item 表示成矩阵：$\boldsymbol{A} = (\boldsymbol{a}_1,\boldsymbol{a}_2,\dots,\boldsymbol{a}_n)$
+			\item 线性组合
+		\end{enumerate}
+	\end{itemize}
+	\subsection{线性组合}
+	\begin{itemize}
+		\item 参数
+		\begin{itemize}
+			\item 向量组$A$
+			\item 系数$k_1,k_2,\dotsb,k_m$
+		\end{itemize}
+		\item 返回
+		\begin{itemize}
+			\item 向量$\boldsymbol{b}$
+			\item 线性方程组$\boldsymbol{b}=k_1\boldsymbol{a}_1+k_2\boldsymbol{a}_2+\dots+k_n\boldsymbol{a}_n$
+		\end{itemize}
+	\end{itemize}
+	\subsection{线性表示}
+	\begin{enumerate}
+		\item 重载：向量$\boldsymbol{b}$能由向量组$A$线性表示
+		\begin{itemize}
+			\item 参数
+			\begin{itemize}
+				\item 向量组$A$
+				\item $\exists$系数$k_1,k_2,\dotsb,k_m$
+				\item 向量$\boldsymbol{b}$
+			\end{itemize}
+			\item 返回
+			\begin{itemize}
+				\item 成立
+				\begin{itemize}
+					\item 条件：$\boldsymbol{b}=$线性组合$(A,k)$
+					\item 等价
+					\begin{enumerate}
+						\item $\Leftrightarrow R(\boldsymbol{A})=R(\boldsymbol{A},\boldsymbol{b})$（定理1）
+					\end{enumerate}
+				\end{itemize}
+				
+					
+				\item 不成立
+			\end{itemize}
+		\end{itemize}
+		\item 重载：向量组$ B $能由向量组$A$线性表示
+		\begin{itemize}
+			\item 参数
+			\begin{itemize}
+				\item 向量组$A$
+				\item $l$组系数$k_1,k_2,\dotsb,k_m$
+				\item 向量组$B$
+			\end{itemize}
+			\item 返回
+			\begin{itemize}
+				\item 成立
+				\begin{itemize}
+					\item 条件：向量组$ B $中的每一项$\boldsymbol{b}_i=$线性组合$(A,(k_{1\dotsb m})_l)$
+					\item 等价
+					\begin{enumerate}
+						\item $\Leftrightarrow\boldsymbol{b}=k_1\boldsymbol{a}_1+k_2\boldsymbol{a}_2+\dots+k_n\boldsymbol{a}_n,\exists k$
+						\item $\Leftrightarrow\boldsymbol{b}=x_1\boldsymbol{a}_1+x_2\boldsymbol{a}_2+\dots+x_n\boldsymbol{a}_n$有解
+						\item $\Leftrightarrow R(\boldsymbol{A})=R(\boldsymbol{A},\boldsymbol{b})$（定理2）
+						\item $
+						\left(\begin{array}{c c c| c c}
+						1 & 0 & 0 & k_1 & j_1 \\
+						0 & 1 & 0 & k_2 & j_2 \\
+						0 & 0 & 1 & k_3 & j_3
+						\end{array}\right)
+						$
+						$
+						\left\{ \begin{array}{l}
+						\boldsymbol{b}_1 = k_1\boldsymbol{a}_1+k_2\boldsymbol{a}_2+k_3\boldsymbol{a}_3\\
+						\boldsymbol{b}_2 = j_1\boldsymbol{a}_1+j_2\boldsymbol{a}_2+j_3\boldsymbol{a}_3
+						\end{array} \right.
+						$
+					\end{enumerate}
+				\end{itemize}
+				\item 不成立
+			\end{itemize}
+		\end{itemize}
+	\end{enumerate}
+		
+	\subsection{向量组等价}
+	\begin{itemize}
+		\item 格式：$\boldsymbol{A}\Leftrightarrow\boldsymbol{B}$
+		\item 参数
+		\begin{itemize}
+			\item 向量组$A$
+			\item 向量组$B$
+		\end{itemize}
+		\item 返回
+		\begin{itemize}
+			\item 成立
+			\begin{itemize}
+				\item 条件
+				\subitem 线性表示$(A,k_{1\dotsb m},B)=$成立
+				\subitem and
+				\subitem 线性表示$(B,k_{1\dotsb m},A)=$成立
+				\item 等价
+				\begin{enumerate}
+					\item $\Leftrightarrow R(\boldsymbol{A})=R(\boldsymbol{B})=R(\boldsymbol{A},\boldsymbol{B})$（定理2推论）
+				\end{enumerate}
+			\end{itemize}
+			
+			\item 不成立
+		\end{itemize}
+	\end{itemize}
+	
+
+	\section{向量组的线性相关性}~\\
+	\subsection{判断线性相关}
+	\begin{itemize}
+		\item 参数
+		\begin{itemize}
+			\item 向量组$A$
+			\item $\exists$系数$k_1,k_2,\dotsb,k_m$
+		\end{itemize}
+		\item 返回
+		\begin{itemize}
+			\item 线性相关
+			\begin{itemize}
+				\item 条件
+				\subitem $k_1,k_2,\dotsb,k_m$，$0=k_1\boldsymbol{a}_1+k_2\boldsymbol{a}_2+\dots+k_n\boldsymbol{a}_n$
+				\item 等价
+				\begin{enumerate}
+					\item $\Leftrightarrow k_1\boldsymbol{a}_1+k_2\boldsymbol{a}_2+\dots+k_n\boldsymbol{a}_n=0,\exists k$不全为0
+					\item$\Leftrightarrow x_1\boldsymbol{a}_1+x_2\boldsymbol{a}_2+\dots+x_n\boldsymbol{a}_n=0$有非零解
+					\item$\Leftrightarrow R(\boldsymbol{A})<$向量个数$m$（定理4）
+					\item$\Leftrightarrow$（方阵）$|A|\ne 0$
+				\end{enumerate}
+			\end{itemize}
+			\item 线性无关
+		\end{itemize}
+	\end{itemize}
+	\subsection{线性相关}
+	\begin{itemize}
+		\item 性质
+		\begin{enumerate}
+			\item 有关+1=有关(定理5)
+			\item 无关-1=无关(定理5)
+			\item 无关+b=有关，则b可用无关唯一表示(定理5)
+		\end{enumerate}
+	\end{itemize}
+	\subsection{0的妙用}
+	\begin{enumerate}
+		\item $|A|\ne 0$
+		\item$\Leftrightarrow A$可逆
+		\item$\Leftrightarrow A$满秩
+		\item$\Leftrightarrow A$非退化
+		\item$\Leftrightarrow A$非奇异
+		\item$\Leftrightarrow Ax=B$有唯一解
+		\item$\Leftrightarrow Ax=0$无非0解
+		\item$\Leftrightarrow \boldsymbol{A}$的向量组线性无关
+	\end{enumerate}
+	
+	\section{向量组的秩}
+	\subsection{定义5}
+	向量组$A$.秩=向量组$A$.最大线性无关向量组.向量个数
+	\subsection{最大线性无关向量组.定义}
+	(定义5推论)
+	\begin{itemize}
+		\item 
+	\end{itemize}
+	\subsection{矩阵.秩.性质}
+	\begin{itemize}
+		\item 等价：矩阵.列向量组.秩，矩阵.行向量组.秩
+	\end{itemize}
+	\section{线性方程组解的结构}
+	\subsection{齐次线性方程组.解向量}
+	\begin{itemize}
+		\item 定义\quad方程组的解x的集合
+		\item 性质
+		\begin{enumerate}
+			\item 可加性\quad$ x=\xi_1+\xi_2 $为方程解
+			\item 可倍性\quad$ x=k\xi_1 $为方程解
+		\end{enumerate}
+	\end{itemize}
+	\subsection{齐次线性方程组.基础解系}
+	\begin{itemize}
+		\item 定义\quad 齐次线性方程组.解集.最大线性无关组
+	\end{itemize}
+	\subsection{齐次线性方程组.解集.求秩(n,r)}
+	\begin{itemize}
+		\item 参数
+		\begin{itemize}
+			\item 齐次线性方程组.元数n
+			\item 齐次线性方程组.秩r
+		\end{itemize}
+		\item 返回
+		\subitem n-r
+	\end{itemize}
+	\subsection{齐次线性方程组.求基础解系(A)}
+	\begin{itemize}
+		\item 参数
+		\item 过程
+		\begin{enumerate}
+			\item 矩阵.化为行阶梯形($ \boldsymbol{A} $)
+			\item R=齐次线性方程组.解集.求秩(n,r)
+			\item 挑出R个非首列列向量
+			\item 取R个列向量的未知数组成单位矩阵
+			\item 单位矩阵代回方程算出其他未知数
+		\end{enumerate}
+	\end{itemize}
+\end{document}

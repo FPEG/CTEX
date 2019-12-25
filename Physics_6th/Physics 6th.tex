@@ -1,0 +1,150 @@
+\documentclass[UTF8,a4paper,12pt,scheme=chinese]{ctexart}
+
+\setlength{\textwidth}{550pt}
+\setlength{\hoffset}{-1.2in}
+\setlength{\voffset}{-1in}
+
+\usepackage{amsmath}
+\usepackage{textcomp} 
+\usepackage{graphicx}
+\usepackage{xcolor}
+
+\linespread{1.6}
+
+\newcommand{\hlx}[2]{%
+	\IfEqCase{#1}{%
+		{1}{
+			\colorbox{yellow!50}{$\displaystyle#2$}
+		}
+		{b}{
+			\colorbox{yellow!50}{$\scriptstyle#2$}
+		}
+		{3}{
+			\colorbox{yellow!50}{$\scriptscriptstyle#2$}
+		}
+	}
+		% you can add more cases here as desired
+	
+}%
+
+
+\pagestyle{headings}
+\ctexset{
+	section={
+		name={第,章},
+		number=\arabic{section},
+		},
+	subsection={
+		name={,节},
+		number=\arabic{subsection}-\arabic{section},
+		},
+}
+
+
+\newcommand{\ud}{\mathrm{d}}
+\newcommand{\lc}{\left(}
+\newcommand{\rc}{\right)}
+
+\newcommand{\hl}[1]{\colorbox{yellow}{#1}}
+\newcommand{\hla}[1]{%
+	\colorbox{yellow!50}{$\displaystyle#1$}}
+\newcommand{\hlb}[1]{%
+	\colorbox{yellow!50}{$\scriptstyle#1$}}
+\newcommand{\hlc}[1]{%
+	\colorbox{yellow!50}{$\scriptscriptstyle#1$}}
+
+\makeatletter
+\DeclareFontFamily{U}{tipa}{}
+\DeclareFontShape{U}{tipa}{m}{n}{<->tipa10}{}
+\newcommand{\arc@char}{{\usefont{U}{tipa}{m}{n}\symbol{62}}}%
+
+\newcommand{\arc}[1]{\mathpalette\arc@arc{#1}}
+
+\newcommand{\arc@arc}[2]{%
+	\sbox0{$\m@th#1#2$}%
+	\vbox{
+		\hbox{\resizebox{\wd0}{\height}{\arc@char}}
+		\nointerlineskip
+		\box0
+	}%
+}
+\makeatother
+
+\begin{document}
+	\begin{Large}
+		\begin{enumerate}
+			\item 一半径为R、质量为m的均匀圆盘平放在粗糙的水平面上。若它的初速度为$w_0$，绕中心$O$旋转，问经过多长时间圆盘才停止。（设摩擦系数为$\mu$）\\
+			用转动定理\\
+			$
+			M=J\alpha\\
+			M=J\frac{\ud \omega}{\ud t}\\
+			M \ud t = J \ud \omega\\
+			\int_{0}^{t}M\ud t = \int_{\omega_0}^{0}J \ud \omega\\
+			M=fr\\
+			\ud M = \ud f \cdot r\\
+			\ud M = \mu g \ud m \cdot r\\
+			\ud M = \mu g \sigma \ud s \cdot r\\
+			\ud M = \mu g \sigma 2\pi r \ud r \cdot r\\
+			M = \int \ud M\\
+			M = \int_{0}^{R}\mu g \sigma 2\pi r \ud r \cdot r\\
+			\int_{0}^{t}\ud t\int_{0}^{R}\mu g \sigma 2\pi r \ud r \cdot r = \int_{\omega_0}^{0}J \ud \omega\\
+			$\\
+			$
+			M=J\alpha\\
+			M=J\frac{\ud \omega}{\ud t}\\
+			M \ud t = J \ud \omega\\
+			\int_{0}^{t}M\ud t = \int_{\omega_0}^{0}J \ud \omega\\
+			\int_{0}^{t}\int \ud M\ud t = \int_{\omega_0}^{0}J \ud \omega\\
+			\int_{0}^{t}\int \ud f \cdot r\ud t = \int_{\omega_0}^{0}J \ud \omega\\
+			\int_{0}^{t}\int \mu g \ud m \cdot r\ud t = \int_{\omega_0}^{0}J \ud \omega\\
+			\int_{0}^{t}\int \mu g \sigma \ud s \cdot r\ud t = \int_{\omega_0}^{0}J \ud \omega\\
+			\int_{0}^{t}\int \mu g \sigma 2\pi r \ud r \cdot r\ud t = \int_{\omega_0}^{0}J \ud \omega\\	
+			\int_{0}^{t}\int_{0}^{R} \mu g \sigma 2\pi r \ud r \cdot r\ud t = \int_{\omega_0}^{0}J \ud \omega\\	
+			\int_{0}^{t}\ud t\int_{0}^{R}\mu g \sigma 2\pi r \ud r \cdot r = \int_{\omega_0}^{0}J \ud \omega\\
+			$\\\\
+			$
+			M=J\alpha\\
+			M=J\frac{\ud \omega}{\ud t}\\
+			M \ud t = J \ud \omega\\
+			\int_{0}^{t}M\ud t = \int_{\omega_0}^{0}J \ud \omega\\
+			\int_{0}^{t}\left(\int \ud M\right)\ud t = \int_{\omega_0}^{0}J \ud \omega\\
+			\int_{0}^{t}\left(\int \ud f \cdot r\right)\ud t = \int_{\omega_0}^{0}J \ud \omega\\
+			\int_{0}^{t}\left(\int \mu g \ud m \cdot r\right)\ud t = \int_{\omega_0}^{0}J \ud \omega\\
+			\int_{0}^{t}\left(\int \mu g \sigma \ud s \cdot r\right)\ud t = \int_{\omega_0}^{0}J \ud \omega\\
+			\int_{0}^{t}\left(\int \mu g \sigma 2\pi r \ud r \cdot r\right)\ud t = \int_{\omega_0}^{0}J \ud \omega\\	
+			\int_{0}^{t}\left(\int_{0}^{R} \mu g \sigma 2\pi r \ud r \cdot r\right)\ud t = \int_{\omega_0}^{0}J \ud \omega\\
+			\int_{0}^{t}\left(\int_{0}^{R} \mu g \frac{m}{\pi R^2} 2\pi r \ud r \cdot r\right)\ud t = \int_{\omega_0}^{0}J \ud \omega\\
+			\int_{0}^{t}\left(\int_{0}^{R} \mu g \frac{m}{\pi R^2} 2\pi r \ud r \cdot r\right)\ud t = \int_{\omega_0}^{0}\frac{1}{2}m R^2 \ud \omega\\	
+			$
+			\begin{eqnarray*}
+			M& = &J\alpha\\
+			M& = &J\frac{\ud \omega}{\ud t}\\
+			M \ud t & = & J \ud \omega\\
+			\int_{0}^{t}M\ud t & = & \int_{\omega_0}^{0}J \ud \omega\\
+			\int_{0}^{t}\left(\int \ud M\right)\ud t & = & \int_{\omega_0}^{0}J \ud \omega\\
+			\int_{0}^{t}\left(\int \ud f \cdot r\right)\ud t & = & \int_{\omega_0}^{0}J \ud \omega\\
+			\int_{0}^{t}\left(\int \mu g \ud m \cdot r\right)\ud t & = & \int_{\omega_0}^{0}J \ud \omega\\
+			\int_{0}^{t}\left(\int \mu g \sigma \ud s \cdot r\right)\ud t & = & \int_{\omega_0}^{0}J \ud \omega\\
+			\int_{0}^{t}\left(\int \mu g \sigma 2\pi r \ud r \cdot r\right)\ud t & = & \int_{\omega_0}^{0}J \ud \omega\\	
+			\int_{0}^{t}\left(\int_{0}^{R} \mu g \sigma 2\pi r \ud r \cdot r\right)\ud t & = & \int_{\omega_0}^{0}J \ud \omega\\
+			\int_{0}^{t}\left(\int_{0}^{R} \mu g \frac{m}{\pi R^2} 2\pi r \ud r \cdot r\right)\ud t & = & \int_{\omega_0}^{0}J \ud \omega\\
+			\int_{0}^{t}\left(\int_{0}^{R} \mu g \frac{m}{\pi R^2} 2\pi r \ud r \cdot r\right)\ud t & = & \int_{\omega_0}^{0}\frac{1}{2}m R^2 \ud \omega\\	
+			\end{eqnarray*}
+		\end{enumerate}
+
+		\section{title}
+		\subsection{title}
+		$\displaystyle\\
+		\Delta \varphi \rightarrow \Delta x:\\
+		y=A\cos \left[\omega(t-\frac{x}{u})+\varphi\right]\\
+		\Phi = \omega(t-\frac{x}{u})+\varphi\\
+		\Delta \Phi = \left[\omega(t-\frac{x_1}{u})+\varphi\right] - \left[\omega(t-\frac{x_2}{u})+\varphi\right]
+		$\\
+		同一列波初相相同,t相同\\
+		$\displaystyle
+		\Delta \Phi = \omega\left(\frac{x_1-x_2}{u}\right) = \frac{2\pi}{T}\left(\frac{x_1-x_2}{u}\right) = 2\pi\frac{x_1-x_2}{\lambda}
+		$
+
+	\end{Large}
+
+\end{document}

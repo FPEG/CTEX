@@ -1,0 +1,390 @@
+\documentclass[UTF8,a4paper,12pt,scheme=chinese]{ctexart}
+
+\setlength{\textwidth}{550pt}
+\setlength{\hoffset}{-1.2in}
+\setlength{\voffset}{-1in}
+
+\usepackage{amsmath}
+\usepackage{textcomp} 
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{esint}
+\usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,positioning,fit,petri}
+
+\newcommand{\hlx}[2]{%
+	\IfEqCase{#1}{%
+		{1}{
+			\colorbox{yellow!50}{$\displaystyle#2$}
+		}
+		{b}{
+			\colorbox{yellow!50}{$\scriptstyle#2$}
+		}
+		{3}{
+			\colorbox{yellow!50}{$\scriptscriptstyle#2$}
+		}
+	}
+		% you can add more cases here as desired
+	
+}%
+
+
+\pagestyle{headings}
+\ctexset{section={
+		name={第,章},
+		number=\arabic{section},
+	},
+subsection={
+	name={第,节},
+	number=\arabic{subsection},
+},
+}
+
+
+\newcommand{\ud}{\mathrm{d}}
+\newcommand{\lc}{\left(}
+\newcommand{\rc}{\right)}
+\newcommand{\ds}{\displaystyle}
+
+\newcommand{\hl}[1]{\colorbox{yellow}{#1}}
+\newcommand{\hla}[1]{%
+	\colorbox{yellow!50}{$\displaystyle#1$}}
+\newcommand{\hlb}[1]{%
+	\colorbox{yellow!50}{$\scriptstyle#1$}}
+\newcommand{\hlc}[1]{%
+	\colorbox{yellow!50}{$\scriptscriptstyle#1$}}
+
+\makeatletter
+\DeclareFontFamily{U}{tipa}{}
+\DeclareFontShape{U}{tipa}{m}{n}{<->tipa10}{}
+\newcommand{\arc@char}{{\usefont{U}{tipa}{m}{n}\symbol{62}}}%
+
+\newcommand{\arc}[1]{\mathpalette\arc@arc{#1}}
+
+\newcommand{\arc@arc}[2]{%
+	\sbox0{$\m@th#1#2$}%
+	\vbox{
+		\hbox{\resizebox{\wd0}{\height}{\arc@char}}
+		\nointerlineskip
+		\box0
+	}%
+}
+\makeatother
+
+\tikzstyle{bag} = [align=center]
+\tikzstyle{longf} = [level distance = 5cm]
+
+\begin{document}
+	\begin{Large}
+%		\tikz \draw (0pt,0pt) --(20pt,6pt);
+%		\tikz \fill[orange] (1ex,1ex) circle (1ex);
+%		\tikz \draw (0,0) -- (1,0) -- (1,1) -- cycle;
+%		\begin{tikzpicture}[scale=3]
+%		\draw[step=.5cm,gray,very thin] (-1.4,-1.4) grid (1.4,1.4);
+%		\draw (-1.5,0) -- (1.5,0);
+%		\draw (0,-1.5) -- (0,1.5);
+%		\draw (0,0) circle [radius=1cm];
+%		\draw (3mm,0mm) arc [start angle=0, end angle=30, radius=3mm];
+%		\end{tikzpicture}
+%		\foreach \x in {1,2,3,0} {[\x]}
+%		
+%		\begin{tikzpicture}[scale=3]
+%%		\clip (-0.6,-0.2) rectangle (0.6,1.51);
+%		\draw[step=.5cm,help lines] (-1.4,-1.4) grid (1.4,1.4);
+%		\filldraw[fill=green!20,draw=green!50!black] (0,0) -- (3mm,0mm)
+%		arc [start angle=0, end angle=30, radius=3mm] -- cycle;
+%		\draw[->] (-1.5,0) -- (1.5,0); \draw[->] (0,-1.5) -- (0,1.5);
+%		\draw (0,0) circle [radius=1cm];
+%		\foreach \x in {-1,-0.5,1}
+%		\draw (\x cm,1pt) -- (\x cm,-1pt) node[anchor=north] {$\x$};
+%		\foreach \y in {-1,-0.5,0.5,1}
+%		\draw (1pt,\y cm) -- (-1pt,\y cm) node[anchor=east] {$\y$};
+%		\end{tikzpicture}
+%		
+%		\begin{tikzpicture}[scale=3]
+%%		\clip (-0.6,-0.2) rectangle (0.6,1.51);
+%		\draw[step=.5cm,help lines] (-1.4,-1.4) grid (1.4,1.4);
+%		\filldraw[fill=green!20,draw=green!50!black] (0,0) -- (3mm,0mm)
+%		arc [start angle=0, end angle=30, radius=3mm] -- cycle;
+%		\draw[->] (-1.5,0) -- (1.5,0); \draw[->] (0,-1.5) -- (0,1.5);
+%		\draw (0,0) circle [radius=1cm];
+%		\foreach \x/\xtext in {-1, -0.5/-\frac{1}{2}, 1}
+%		\draw (\x cm,1pt) -- (\x cm,-1pt) node[anchor=north] {$\xtext$};
+%		\foreach \y/\ytext in {-1, -0.5/-\frac{1}{2}, 0.5/\frac{1}{2}, 1}
+%		\draw (1pt,\y cm) -- (-1pt,\y cm) node[anchor=east] {$\ytext$};
+%		\draw[red,very thick,->] (30:1cm) -- +(0,-0.5);
+%		\end{tikzpicture}
+%		\begin{tikzpicture}
+%		[place/.style={circle,draw=blue!50,fill=blue!20,thick},
+%		transition/.style={rectangle,draw=black!50,fill=black!20,thick}]
+%		\node[place] (waiting) {};
+%		\node[place] (critical) [below=of waiting] {};
+%		\node[place] (semaphore) [below=of critical] {};
+%		\node[transition] (leave critical) [right=of critical] {};
+%		\node[transition] (enter critical) [left=of critical] {};
+%		\draw [->] (enter critical.east) -- (critical.west);
+%		\draw [->] (waiting.west) .. controls +(-5mm,0) and +(0,5mm)
+%		.. (enter critical.north);
+%		\end{tikzpicture}
+%		\begin{tikzpicture}
+%		\node[place] (waiting) {};
+%		\node[place] (critical) [below=of waiting] {};
+%		\node[place] (semaphore) [below=of critical] {};
+%		\node[transition] (leave critical) [right=of critical] {};
+%		\node[transition] (enter critical) [left=of critical] {}
+%		edge [->] (critical)
+%		edge [<-,bend left=45] (waiting)
+%		edge [->,bend right=45] (semaphore);
+%		\end{tikzpicture}
+		
+%		\begin{tikzpicture}
+%		[
+%		font=\footnotesize,
+%%		level 1/.style={sibling distance=6em,level distance=2cm},
+%%		level 2/.style={sibling distance=1em,level distance=2.5cm},
+%		grow=right
+%		]
+%		\node (nd1)
+%		{曲线积分} % root
+%		child { node {第一类}
+%			child { node {表示} }
+%			child { node {计算} }
+%		};
+%		\node (nd2) [below=of nd1]
+%		{曲线积分} % root
+%		child[sibling distance=1em,level distance=2.5cm] { node {第一类}
+%			child { node (cnd1) {表示} }
+%			child { node (cnd2) {计算} }
+%		}
+%		edge [->,bend right=45] (nd1);
+%		\draw [->](cnd1)to [bend right=45](cnd2);
+%		\end{tikzpicture}
+
+
+		\begin{tikzpicture}
+		[
+		font=\footnotesize,	
+		level 1/.style={sibling distance=7em,level distance=2cm},
+		level 2/.style={sibling distance=2.5em,level distance=2.5cm},
+		level 3/.style={sibling distance=2.5em,level distance=2.5cm},
+		level 4/.style={sibling distance=1em,level distance=3cm},
+		level 5/.style={sibling distance=1em,level distance=4cm},
+		grow=right
+		]
+			\node {曲线积分}
+			child{node{格林公式}
+				child{node{$\frac{\partial P}{\partial y}=\frac{\partial Q}{\partial x}$的等价}
+					child{node{全微分}
+						child[longf]{node{$P \ud x + Q \ud y$为某一函数$u(x,y)$的全微分}}
+					}
+					child{node{路径无关}}
+				}
+				child{node{应用}child{node{求面积}child{node{
+								$A=\frac{1}{2}\oint_Lx \ud y - y \ud x$
+				}}}}
+				child{node{表示}child[longf]{node{
+							$\iint_D\left(\hla{
+							\frac{\partial Q }{\partial x}-
+							\frac{\partial P }{\partial y}}
+							\right) \ud x \ud y = \oint_LP \ud x + Q \ud y$
+						}}}
+			}
+			child{node{联系}
+				child{node{表示}
+					child[longf]{node{
+							$\ds\cos \alpha = \frac{\varphi'(t)}{\sqrt{\varphi'^2(t)+\psi'^2(t)}}$
+							$\ds\cos \beta = \frac{\psi'(t)}{\sqrt{\varphi'^2(t)+\psi'^2(t)}}$
+					}}
+					child[longf]{node{$\int_{L}P \ud x + Q \ud y 
+							= \int_{L}P\cos \alpha + Q\cos \beta \ud s$}}
+				}
+			}
+			child{node{第二类}
+				child {node{计算}
+					child {node{类型}
+						child{node{$x=\varphi(t),y=\phi(t)$}}
+					}
+					child {node{方法}
+						child[bag]{node{x，y用参数方程t表示\\上下限与路径方向有关}}
+					}
+				}
+				child {node{表示}
+					child{node{$\int_{L}P(x,y) \ud x +Q(x,y) \ud y$}}
+				}
+			}
+			child{node{第一类}
+				child {node{计算}	
+					child[sibling distance=4em]{node{类型}
+						child
+						{node{$x=\rho\cos(\theta)$,$y=\rho\sin(\theta)$}	
+							child {node{$\hla{\sqrt{\rho^2(\theta)+\rho'^2(\theta)}}$}}
+						}
+						child{node{$x=y(y),y=y$}
+							child {node{$\sqrt{1+y'^2(x)}$}}
+						}
+						child{node{$x=x,y=x(y)$}
+							child {node{$\sqrt{1+x'^2(y)}$}}
+						}
+						child{node{$x=\varphi(t),y=\phi(t)$}
+							child {node{$\sqrt{x'^2(t)+y'^2(t)}$}}
+						}
+					}
+					child{node{方法}
+					child[bag]{node{一代，二换\\上限大于下限}}}
+				}
+				child {node{表示}
+					child{node{$\int_{L}f(x,y) \ud s$}}}
+			}
+		;
+		\end{tikzpicture}
+		\\
+		\begin{tikzpicture}
+		[
+		font=\footnotesize,	
+		level 1/.style={sibling distance=7em,level distance=2cm},
+		level 2/.style={sibling distance=2.5em,level distance=2.5cm},
+		level 3/.style={sibling distance=2.5em,level distance=2.5cm},
+		level 4/.style={sibling distance=1em,level distance=3cm},
+		level 5/.style={sibling distance=1em,level distance=4cm},
+		grow=right
+		]
+			\node {曲面积分}
+			child{node{高斯公式}
+				child{node{表示}
+					child[longf]{node{$\iiint_\Omega\left(
+							\frac{\partial P}{\partial x}+
+							\frac{\partial Q}{\partial y}+
+							\frac{\partial R}{\partial z}
+							\right)=
+							\oiint_\Sigma P \ud y\ud z + Q \ud x\ud z + R \ud x\ud y
+							$}}
+				}
+			}
+			child{node{联系}
+				child{node{表示}
+					child[level distance = 7cm,bag]{node{
+							$\ds\cos\alpha=\frac{-z_x}{\sqrt{1+z_x^2+z_y^2}}$
+							$\ds\cos\beta=\frac{-z_y}{\sqrt{1+z_x^2+z_y^2}}$
+							$\ds\cos\gamma=\frac{1}{\sqrt{1+z_x^2+z_y^2}}$
+					}}
+					child[longf,bag]{node{$\iint_\Sigma P \ud y\ud z + Q \ud x\ud z + R \ud x\ud y =$\\
+							$\iint_\Sigma\left( P \cos\alpha + Q \ud \cos\beta + R \cos\gamma\right)\ud S $
+					}}
+				}
+			}
+			child{node{第二类}
+				child{node{计算}
+					child{node{类型}
+						child[longf]{node{$\iint_\Sigma R(x,y,z) \ud x \ud y = \pm \iint_{D_{xy}}R(x,y,z(x,y))$}}
+						child[longf]{node{$\iint_\Sigma R(x,y,z) \ud x \ud z = \pm \iint_{D_{xz}}R(x,y,y(x,y))$}}
+						child[longf]{node{$\iint_\Sigma R(x,y,z) \ud y \ud z = \pm \iint_{D_{yz}}R(x,y,x(x,y))$}}
+					}
+					child{node{方法}
+						child[longf]{node{一代二投三定号，根据$\cos\alpha\beta\gamma$的符号}}
+					}
+				}
+				child{node{表示}
+					child[longf]{node{$\iint_\Sigma 
+							P(x,y,z) \ud y  \ud z+
+							Q(x,y,z) \ud x  \ud z+
+							R(x,y,z) \ud x  \ud y
+							$}}
+				}
+			}
+			child{node{第一类}
+				child{node{计算}
+					child{node{类型}
+						child{node{向XoZ投影}}
+						child{node{向YoZ投影}}
+						child{node{向XoY投影}}
+					}
+					child{node{方法}
+						child[bag]{node{一代二换三投影\\ $\ud S = \sqrt{1+z_x^2+z_y^2}$}}
+					}
+				}
+				child{node{表示}
+					child{node{$\iint_\Sigma 
+							\mu(x,y,z) \ud S  
+							$}}
+				}
+			}
+		;
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+		[
+		font=\footnotesize,	
+		level 1/.style={sibling distance=16em,level distance=2cm},
+		level 2/.style={sibling distance=2.5em,level distance=2.5cm},
+		level 3/.style={sibling distance=10em,level distance=2.5cm},
+		level 4/.style={sibling distance=4em,level distance=3cm},
+		level 5/.style={sibling distance=1em,level distance=4cm},
+		grow=right
+		]
+		\node {多重积分}
+		child{node{应用}
+			child{node{求曲面面积}
+				child[longf]{node{$A=\iint_D \sqrt{1+\left(\frac{\partial z}{\partial x}\right)^2+\left(\frac{\partial z}{\partial y}\right)^2} \ud x \ud y$}}
+			}
+		}
+		child{node{三重积分}
+			child{node{计算}				
+				child{node{球面坐标}
+					child{node{范围}
+						child{node{$0\leq\theta\leq2\pi$}}
+						child{node{$0\leq\varphi\leq\pi$}}
+						child{node{$0\leq r<+\infty$}}
+					}
+					child{node{代换}
+						child{node{$z=r\cos\varphi$}}
+						child{node{$y=r\sin\varphi\sin\theta$}}
+						child{node{$x=r\sin\varphi\cos\theta$}}
+					}
+					child{node{表示}
+						child{node{$\iiint_\Omega F(r,\varphi,\theta)\hla{r^2\sin\varphi} \ud r\ud \varphi \ud \theta $}}
+					}
+				}
+				child{node{柱面坐标}			
+					child{node{范围}
+						child{node{$-\infty<z<+\infty$}}
+						child{node{$0\leq\theta\leq2\pi$}}
+						child{node{$0\leq\rho<+\infty$}}
+					}
+					child{node{代换}
+						child{node{$z=z$}}
+						child{node{$y=\rho\sin\theta$}}
+						child{node{$x=\rho\cos\theta$}}
+					}
+					child{node{表示}
+						child{node{$\iiint_\Omega F(\rho,\theta,z)\hla{\rho} \ud \rho \ud \theta \ud z$}}
+					}
+				}
+				child[sibling distance=5em]{node{直角坐标}}
+			}
+		}
+		child[sibling distance=5em]{node{二重积分}};
+		\end{tikzpicture}
+		\\
+		\begin{tikzpicture}
+		[font=\footnotesize,	
+		level 1/.style={sibling distance=16em,level distance=2cm},
+		level 2/.style={sibling distance=2.5em,level distance=2.5cm},
+		level 3/.style={sibling distance=10em,level distance=2.5cm},
+		level 4/.style={sibling distance=4em,level distance=3cm},
+		level 5/.style={sibling distance=1em,level distance=4cm},
+		grow=right]
+		\node {多元函数微分法}
+		child{node{几何应用}
+			child{node{切向量}
+				child{node{$T=(\varphi'(t_0),\psi'(t_0),\omega'(t_0))$}}
+			}
+			child{node{切线方程}
+				child{node{$\frac{x-x_0}{\varphi'(t_0)},\frac{y-y_0}{\psi'(t_0)},\frac{z-z_0}{\omega'(t_0)}$}}
+			}
+		}
+		child{node{偏导数}}
+		;
+		\end{tikzpicture}
+	\end{Large}
+
+\end{document}

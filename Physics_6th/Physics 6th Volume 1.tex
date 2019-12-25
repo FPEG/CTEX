@@ -1,0 +1,494 @@
+\documentclass[UTF8,a4paper,12pt,scheme=chinese]{ctexbook}
+
+%\setlength{\textwidth}{550pt}
+%\setlength{\hoffset}{-1.2in}
+%\setlength{\voffset}{-1in}
+
+\usepackage{amsmath}
+\usepackage{textcomp} 
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{setspace}
+\usepackage{subeqnarray}
+\usepackage{longtable}
+\usepackage{mathrsfs}
+
+\usepackage{makecell}
+
+\linespread{1.6}
+
+\newcommand{\hlx}[2]{%
+	\IfEqCase{#1}{%
+		{1}{
+			\colorbox{yellow!50}{$\displaystyle#2$}
+		}
+		{b}{
+			\colorbox{yellow!50}{$\scriptstyle#2$}
+		}
+		{3}{
+			\colorbox{yellow!50}{$\scriptscriptstyle#2$}
+		}
+	}
+		% you can add more cases here as desired
+	
+}%
+
+
+%\pagestyle{headings}
+%\ctexset{
+%	section={
+%		name={第,章},
+%		number=\arabic{section},
+%		format=\flushleft\bfseries,
+%		},
+%	subsection={
+%		name={,},
+%		numberformat=\sffamily,
+%		format=\youyuan\large ,
+%		number=\arabic{section}-\arabic{subsection},
+%		},
+%	subsubsection={
+%		name={,},
+%		format=\normalsize\flushleft\CJKfamily{zhsong}\bfseries,
+%		number=\chinese{subsubsection}、,
+%	},
+%}
+
+\ctexset{
+	section={
+		name={,},
+		number=\arabic{chapter}-\arabic{section},
+		format=\youyuan\large ,
+		%format=\flushleft\bfseries,
+	},
+	subsection={
+		name={,、},
+		%numberformat=\sffamily,
+		numberformat=\CJKfamily{zhsong}\bfseries,
+		%format=\youyuan\large ,
+		format=\normalsize\flushleft\CJKfamily{zhsong}\bfseries,
+		number=\chinese{subsection},
+	},
+	subsubsection={
+		name={,},
+		format=\normalsize\flushleft\CJKfamily{zhsong}\bfseries,
+		number=\chinese{subsubsection}、,
+	},
+}
+
+\newcommand{\sll}[1]{\overrightarrow{#1}}
+%\newcommand{\sll}[1]{\boldsymbol{#1}}
+\newcommand{\ud}{\mathrm{d}}
+\newcommand{\lc}{\left(}
+\newcommand{\rc}{\right)}
+
+\newcommand{\hl}[1]{\colorbox{yellow}{#1}}
+\newcommand{\hla}[1]{%
+	\colorbox{yellow!50}{$\displaystyle#1$}}
+\newcommand{\hlb}[1]{%
+	\colorbox{yellow!50}{$\scriptstyle#1$}}
+\newcommand{\hlc}[1]{%
+	\colorbox{yellow!50}{$\scriptscriptstyle#1$}}
+
+\makeatletter
+\DeclareFontFamily{U}{tipa}{}
+\DeclareFontShape{U}{tipa}{m}{n}{<->tipa10}{}
+\newcommand{\arc@char}{{\usefont{U}{tipa}{m}{n}\symbol{62}}}%
+
+\newcommand{\arc}[1]{\mathpalette\arc@arc{#1}}
+
+\newcommand{\arc@arc}[2]{%
+	\sbox0{$\m@th#1#2$}%
+	\vbox{
+		\hbox{\resizebox{\wd0}{\height}{\arc@char}}
+		\nointerlineskip
+		\box0
+	}%
+}
+\everymath{\displaystyle}
+\allowdisplaybreaks
+\makeatother
+
+\begin{document}
+	\chapter{质点运动学}
+	\section{质点运动的描述}
+	\subsection{参考系\quad 质点}
+	\begin{longtable}{|l|c|c|c|c|}
+		\hline 
+		名称 & 字 & 别名 & 类型 & 公式\\ 
+		\hline 
+		\makecell[l]{位置矢量\\位矢} & $ \sll{r} $ &  & 矢量 & $ x\sll{i}+y\sll{j}+z\sll{k} $\\ 
+		\hline
+		位矢.模 & $ |\sll{r}| $ & $ r $ & 标量 & $ \sqrt{x^2+y^2+z^2} $\\
+		\hline
+		位矢.模.增量 & $ \Delta|\sll{r}| $ & $ \Delta{r} $ & 标量 & $ {r}(t+\Delta{t})-{r} $\\
+		\hline
+		\makecell[l]{位移矢量\\位移\\位矢.增量} & $ \Delta\sll{r} $ &  & 矢量 & 
+		\makecell{
+		$ \sll{r}(t+\Delta{t})-\sll{r} $\\
+		$ \sll{r}_B-\sll{r}_A $\\
+		$ \Delta x\sll{i}+\Delta y\sll{j} + \Delta z\sll{k} $
+		}\\
+		\hline
+		位移.模 & $ |\Delta\sll{r}| $ &   & 标量 & \makecell{不是$ \Delta|\sll{r}| $\\$ \sqrt{\Delta x^2+\Delta y^2+\Delta z^2} $}\\
+		\hline
+		路程 & $ \arc{\Delta s} $ &  & 标量 & \\
+		\hline
+		路程.极限 & $ \ud s $ &  & 标量 & \makecell{$ \lim\limits_{\Delta t \rightarrow 0}|\Delta \sll{r}|=\ud r $\\$ \sqrt{\ud x^2+\ud y^2+\ud z^2} $}\\
+		\hline
+		平均速度 & $ \overline{\sll{v}} $ &  & 矢量 & \makecell*[c]{
+			$ \dfrac{\Delta \sll{r}}{\Delta t} $\\[2ex]
+			$ \dfrac{\Delta x}{\Delta t}\sll{i}+\dfrac{\Delta y}{\Delta t}\sll{j}+\dfrac{\Delta z}{\Delta t}\sll{k} $
+		}\\[2ex]
+		\hline
+		\makecell[l]{瞬时速度\\速度} & $ \sll{v} $ &  & 矢量 & $ \lim\limits_{\Delta t \rightarrow 0}\dfrac{\Delta \sll{r}}{\Delta t}=\dfrac{\ud \sll{r}}{\ud t} $\\
+		\hline
+		\makecell[l]{速度.模\\速率} & $ |\sll{v}| $ & $ v $ & 标量 & \makecell*{$ \lim\limits_{\Delta t \rightarrow 0}\dfrac{|\Delta \sll{r}|}{\Delta t}=|\dfrac{\ud \sll{r}}{\ud t}| $\\[2ex]
+		$ \lim\limits_{\Delta t \rightarrow 0}\dfrac{\Delta s}{\Delta t}=\dfrac{\ud s}{\ud t} $\\[2ex]$ \sqrt{v_x^2+v_y^2+v_z^2} $}\\[2ex]
+		\hline
+		\rule[-2.5ex]{0pt}{7ex}平均加速度 & $ \overline{\sll{a}} $ &  & 矢量 & $ \dfrac{\Delta \sll{v}}{\Delta t} $\\
+		\hline
+		平均加速度.方向 &  &  & 角度 & $ \Delta \sll{v} $的方向 \\
+		\hline
+		\makecell[l]{瞬时加速度\\加速度} & $ \sll{a} $ &  & 矢量 & $ \lim\limits_{\Delta t \rightarrow 0}\dfrac{\Delta \sll{v}}{\Delta t}=\dfrac{\ud \sll{v}}{\ud t} $\\
+		\hline
+		加速度.方向 &  &  & 角度 & $ \ud \sll{v} $的方向 \\
+		\hline
+		\rule[-2.5ex]{0pt}{7ex}切向单位矢量 & $ \sll{e}_t $ &  & 矢量 & $ \dfrac{\sll{v}}{v} $ \\
+		\hline
+		
+		\rule[-2.5ex]{0pt}{7ex}角度增量 & $ \Delta\theta $ &  & 标量 & $ \dfrac{\Delta s}{r} $\\
+		\hline
+		\rule[-2.6ex]{0pt}{7ex}角速度 & $ \omega $ & $ \dfrac{\ud\theta}{\ud t} $ & 标量 & $ \dfrac{1}{r}\dfrac{\ud s}{\ud t}=\dfrac{1}{r}v $(速率)\\
+		\hline
+		速率.圆周运动 & $ v $ &  & 标量 & $ \omega r $\\
+		\hline
+		
+		\rule[-2.6ex]{0pt}{7ex}加速度.圆周运动 & $ \sll{a} $ &  & 矢量 & $ \dfrac{\ud \sll{v}}{\ud t}=\boxed{\dfrac{\ud v}{\ud t}\sll{e}_t}+\boxed{v\dfrac{\ud \sll{e}_t}{\ud t}} $\\
+		\hline
+		\rule[-2.5ex]{0pt}{7ex}切向加速度 & $ \sll{a}_t $ &  & 矢量 & $ \dfrac{\ud v}{\ud t}\sll{e}_t=r\dfrac{\ud \omega}{\ud t}\sll{e}_t $ \\
+		\hline
+		\rule[-2.5ex]{0pt}{7ex}切向加速度.模 & $ {a}_t $ &  & 标量 & $ \dfrac{\ud v}{\ud t}=r\dfrac{\ud \omega}{\ud t} $ \\
+		\hline
+		\rule[-2.5ex]{0pt}{7ex}法向单位矢量 & $ \sll{e}_n $ &  & 矢量 & $ \dfrac{\ud\sll{e}_t}{\ud\theta}=\dfrac{\ud\sll{e}_t}{\ud t}\dfrac{\ud t}{\ud\theta} $\\
+		\hline
+		\rule[-2.5ex]{0pt}{7ex}法向加速度 & $ \sll{a}_n $ &  & 矢量 & $ v\dfrac{\ud \theta}{\ud t}\sll{e}_n $\\
+		\hline
+		
+		
+		
+	\end{longtable} 
+	\section{asd}
+	\section{asd}
+	$ a+b \ud x = c $
+	\chapter{牛顿定律}
+	\chapter{动量}
+	\chapter{刚体}
+	\chapter{静电场}
+	\section{电荷的量子化、电荷守恒定律}
+	\subsection{电荷的量子化}
+	\subsection{电荷守恒定律}
+	\hl{\textbf{用于计算球壳表面电荷}}
+	\section{库仑定律}
+	
+	
+	\paragraph{库仑定律} $ \sll{F_{12}} = \dfrac{1}{4\pi\varepsilon_0}\dfrac{q_1q_2}{r^2}\sll{e_r} $
+	\begin{enumerate}
+		\item $e_r$：1指向2
+		\item $q_2$：受到$ F_{12} $
+		\item $q_1$：受到$ F_{21} $
+	\end{enumerate}
+	\paragraph{真空电容率}$ \varepsilon_0=8.85\times10^{-12}F\cdot m^{-1} $
+	\section{电场强度}
+	\subsection{静电场}
+	
+	\subsection{电场强度}
+	\paragraph{电场强度}$ \sll{E}=\dfrac{\sll{F_{?0}}}{q_0} $,$ \sll{F_{?0}}=q\sll{E} $
+	\begin{itemize}
+		\item $ q $是正电荷，$ E $的方向是$ F $的方向
+		\item 当前位置：场点
+		\item $ ? $：场源电荷
+	\end{itemize}
+	\paragraph{单位}$ N\cdot C^{-1},V\cdot m^{-1} $
+	\paragraph{方向}场源指向实验电荷(场点)
+	\subsection{点电荷的电场强度}
+	\paragraph{\hl{电场强度(定义法)}}$ \sll{E}=\dfrac{\sll{F}}{q_0}=\dfrac{1}{4\pi\varepsilon_0}\dfrac{Q}{r^2}\sll{e_r}  $
+	\subsection{电场强度叠加原理}
+	\paragraph{叠加原理} $ \sll{E}=\sum_{i=1}^{n}\sll{E_i} $
+	\subsubsection{电荷连续分布的电场}
+	\paragraph{微分}$ \ud \sll{E} = \dfrac{\ud q}{4\pi\varepsilon_0r^2}\sll{e_r} $
+	\begin{itemize}
+		\item $ \ud q =\lambda a \ud\theta$
+	\end{itemize}
+	\paragraph{积分}$ \sll{E} = \int\ud \sll{E} = \int \dfrac{\ud q}{4\pi\varepsilon_0}\dfrac{\sll{e_r}}{r^2} $
+	\begin{enumerate}
+		\item $ \ud q $位置改变,$ \ud \sll{E} $方向不变
+		\item $ \ud q $位置改变,$ \ud \sll{E} $方向改变
+		\begin{itemize}
+			\item 分解$ \ud \sll{E} $
+			\item $ \sll{E_x} = \int\ud \sll{E_x} = \int\ud \sll{E}\cos\beta = \int \dfrac{\ud q}{4\pi\varepsilon_0}\dfrac{\sll{e_r}}{r^2}\cos\beta $
+			\item 选取$ \ud q $,确定de的大小和方向
+			\item 建立坐标，将de投影到坐标轴上，分析对称性
+			\item 积分exey
+			\item 解出e的大小和方向
+		\end{itemize}
+	\end{enumerate}
+	\subsection{电偶极子的电场强度}
+	\paragraph{电偶极子}两个电荷量相等、符号相反、相距为$ r_0 $的点电荷$ +q $和$ -q $
+	\paragraph{电偶极矩、电矩} $ \sll{p}=q\sll{r_0} $
+	\paragraph{轴}$ \sll{r_0}= -q\rightarrow+q $
+	\section{电场强度通量、高斯定理}
+	\subsection{电场线}
+	\subsection{电场强度通量}
+	\paragraph{电场强度通量$ \varPhi_e $}通过电场中某一个面的电场线数目
+	\paragraph{匀强电场}$ \varPhi_e=\sll{E}\cdot\sll{S} $
+	\paragraph{非匀强电场}
+	\begin{itemize}
+		\item $ \ud\varPhi_e=\sll{E}\cdot\ud\sll{S}=E\cos\theta\ud S $
+		\item $ \varPhi_e=\int_S\ud\varPhi_e=\int_SE\cos\theta\ud S=\int_S\sll{E}\cdot\ud\sll{S} $
+		\item $ \theta $是电场强度与向外法线夹角
+	\end{itemize}
+	\paragraph{非匀强电场闭合曲面}
+	\begin{itemize}
+		\item $ \varPhi_e=\oint_S\ud\varPhi_e=\oint_SE\cos\theta\ud S=\oint_S\sll{E}\cdot\ud\sll{S} $
+	\end{itemize}
+	\subsection{高斯定理}
+	\paragraph{\hl{高斯定理}}$ \varPhi_e=\oint_S\sll{E}\cdot\ud\sll{S}=\frac{q}{\varepsilon_0} $
+	\begin{itemize}
+		\item 计算带电体周围电场的电场强度$ \sll{E} $
+		\item 选取合适的闭合曲面(即高斯面)：球面、柱面，使面积分变得简单易算，使$ \sll{E} $与法线垂直，$ \cos\theta=0 $
+	\end{itemize}
+	\paragraph{包围点电荷的区域}\begin{itemize}
+		\item $ \sll{E}=\dfrac{q}{4\pi\varepsilon_0R^2}\sll{e_r} $
+		\item $ \ud \sll{S}=\ud S\cdot\sll{e_r} $
+	\end{itemize}
+	\paragraph{叠加} $ \varPhi_e=\dfrac{1}{\varepsilon_0}\sum_{i=1}^n \hla{q_i^{in}} $限制：高度对称的电场
+	\paragraph{三步}
+	\begin{enumerate}
+		\item 左边=$ \oint\sll{E}\cdot\ud\sll{S} = \oint E \ud S \cos 0 = E \oint \ud S = E4\pi r^2 $
+		\item 右边=$ \dfrac{1}{\varepsilon_0}\sum q^{in}, \begin{array}{c c}
+		asd\\asd
+		\end{array}$
+		\item 解方程求E
+	\end{enumerate}
+	\paragraph{总方针}高斯定理$ \rightarrow $通过高斯面的通量$ES=\dfrac{q}{\varepsilon_0}  $$ \rightarrow $电场强度$ E $
+	\section{*密立根测定电子电荷的实验}
+	\section{静电场的环路定理 电势能}
+	\subsection{静电场力所做的功}
+	\paragraph{推导}$ \begin{array}{rcll}
+	\ud W&=&\sll{F}\cdot\ud \sll{l}&\mbox{元功}\\
+	\ud W&=&q_0\sll{E}\cdot\ud \sll{l}&\mbox{这里导出通用公式}\\
+	\ud W&=&q_0\dfrac{1}{4\pi\varepsilon_0}\dfrac{q}{r^2}\sll{e_r}\cdot\ud \sll{l}\\
+	\ud W&=&q_0\dfrac{1}{4\pi\varepsilon_0}\dfrac{q}{r^2}\ud r\\
+	\int_{AB}\ud W&=&\int_{r_a}^{r_b}q_0\dfrac{1}{4\pi\varepsilon_0}\dfrac{q}{r^2}\ud r&=\hla{W_{AB}}\\
+	\int_{AB}\ud W&=&\int_{r_a}^{r_b}\dfrac{q_0}{4\pi\varepsilon_0}\dfrac{q}{r^2}\ud r&\mbox{整合}\\
+	\int_{AB}\ud W&=&\dfrac{q_0q}{4\pi\varepsilon_0}\left(\dfrac{1}{r_A}-\dfrac{1}{r_B}\right) &\mbox{积分}\\
+	\end{array} $
+	\begin{itemize}
+		\item $ q $：原点电荷，场源
+	\end{itemize}
+	\paragraph{结论}$ W_{AB}+W_{BA}=0 $,$ \oint \sll{F}\cdot\ud \sll{l}=0 $
+	\paragraph{\hl{通用公式}}$ W_{AB}=q_0\int_{AB}\sll{E}\cdot\ud\sll{l} $
+	\subsection{静电场的环路定理}
+	\begin{itemize}
+		\item 在静电场中，将试验电荷$ q_0 $沿闭合路径移动一周，电场力做的功为0
+		\item 在静电场中，电场强度$ \sll{E} $沿任意闭合路径的线积分为0
+		\item 在静电场中电场强度$ \sll{E} $的环流为零
+	\end{itemize}
+	
+	$$ W=\oint_L\sll{F}\cdot\ud l = q_0\oint_L\sll{E}\cdot\ud l = 0 $$
+	\begin{itemize}
+		\item 静电场是保守场
+	\end{itemize}
+	\subsection{电势能}
+	
+	$$ W_{AB}=E_{pA}-E_{pB}=-(E_{pB}-E_{pA})=q_0\int_{AB}\sll{E}\cdot\ud\sll{l} $$
+	\begin{itemize}
+		\item $ E_{pA} $：试验电荷$ q_0 $在电场中点$ A $的电势能
+	\end{itemize}
+	$$ E_{pA}=W_{AB}=q_0\int_{AB}\sll{E}\cdot\ud\sll{l} $$
+	\begin{itemize}
+		\item $ E_{pB}=0 $
+		\item 电势能=点到零势能点电场力做功
+	\end{itemize}
+	
+	\section{电势}
+	\subsection{电势electric potential}
+	\paragraph{\hl{电势}}$ V_A=E_{pA}/q_0 $
+	$$ V_A=-\int_{\infty A}\sll{E}\cdot\ud l $$
+	电场中某一点片的电势$ V_A $，在数值上等于把单位正试验电荷从点$ A $移到零电势点(无限远处)时，静电场力所做的功。
+	在实用中，常取大地的电势为零。
+	\subsection{电势差}
+	$$ U_{AB}=V_A-V_B=-(V_B-V_A)=\int_{AB}\sll{E}\cdot\ud l $$
+	静电场中$ A,B $两点的电势差$ U_{AB} $，在数值上等于把单位正试验电荷从点$ A $移到点$ B $时，静电场力做的功.
+	\paragraph{\hl{电子伏}}$ 1eV=1.602\times10^{-19}J $
+	\paragraph{整理公式}$ \varphi_A-W_{AB}=\varphi_B ; \varphi_A-\int_{AB}\sll{E}\cdot\ud\sll{l}=\varphi_B $
+	$$ V(U[\varphi])_A=\dfrac{W_A}{q_0}
+	=\int\limits_{A}^{\mbox{零势能点}}\sll{E}\cdot\ud\sll{l} 
+	=\int_{A}^{\infty}\sll{E}\cdot\ud\sll{l} 
+	$$
+	电势差$ U_{AB} $
+	$$ U_{AB}=V_A-V_B=\int_{AB}\sll{E}\cdot\ud\sll{l} $$
+	$$ V_p=\int_p^\infty\sll{E}\cdot\ud\sll{l}\mbox{(要求对称)}
+	=\sll{e_r}\cdot\ud \sll{l} = ||
+	=\int_p^\infty\dfrac{q\ud  l}{4\pi\varepsilon_0r^2} $$
+	$$ W_{AB}=q(U_B-U_A)$$
+	\subsection{点电荷电场的电势}
+	\paragraph{\hl{点电荷电场的电势}}$$ V_A=\int_{A\infty}\sll{E}\cdot\ud\sll{l}=\int_{r}^\infty\sll{E}\cdot\ud\sll{l}=\dfrac{q}{4\pi\varepsilon_0}\dfrac{1}{r} $$
+	当$ q>0 $时，电场中各点的电势都是正值，随$ r $的增加而减小；但当$ \hla{q<0} $	时，电场中各点的电势则是负值，而在无限远处的电势虽为零，但电势却最高.
+	\subsection{电势的叠加原理}
+	\paragraph{标量积分}$ V_A=\sum_{i=1}^{n}\dfrac{1}{4\pi\varepsilon_0}\dfrac{q_i}{r_i} $
+	\section{电场强度与电势梯度}
+	\subsection{等势面}
+	\subsection{电场强度与电势梯度}
+	\section{*静电场中的电偶极子}
+	\chapter{静电场种的导体与电介质}
+	\section{静电场中的导体}
+	\subsection{静电平衡条件}
+	\paragraph{静电感应现象}
+	把金属导体放在\textbf{外电场}中，导体中的自由电子在作无规热运动的同时，还将在电场力作用下作宏观定向运动，从而使导体中的电荷重新分
+	布的这个现象\\最后导体内没有电荷作定向运 
+	动，导体处于静电平衡状态.
+	\paragraph{静电平衡状态}
+	\begin{itemize}
+		\item 导体内部任何一\textbf{点}处的电场强度为零
+		\item 导体表面处电场强度的方向，都与导体表面\textbf{垂直}
+		\item 导体内取任意两点A和B，$ U=\int_{AB}\sll{E}\cdot\ud\sll{l}=0 $
+		\item 在静电平衡时,导体内任意两点间的电势是相等的
+		\item 导体表面为一等势面
+		\item 导体处于静电平衡时，导体上的电势处处相等，导体为一等势体.
+	\end{itemize}
+	\subsection{静电平衡时导体上电荷的分布}
+	$$ \oint_S\sll{E}\cdot\ud \sll{S}=0 $$
+	\begin{itemize}
+		\item 通过导体内\textbf{任意高斯面}的电场强度通量亦必为零
+		\item 在静电平衡时，导体所带的电荷只能分布在导体的\textbf{表面}上,导体内没有净电荷.
+	\end{itemize}
+	
+	\subsection{静电屏蔽}
+	\section{静电场中的电介质}
+	\subsection{电介质对电场的影响、相对电容率}
+	\subsection{电介质的极化}
+	\subsection{电极化强度}
+	\subsection{极化电荷与自由电荷的关系}
+	\section{*电位移、有电介质时的高斯定理}
+	\section{电容、电容器}
+	\section{*静电场的能量、能量密度}
+	\section{*电容器的充放电}
+	\section{*静电的应用}
+	\chapter{恒定磁场}
+	\section{恒定电流}
+	\subsection{电流、电流密度}
+	\subsection{*电流的连续性方程、恒定电流条件}
+	\subsection{*欧姆定律的微分形式}
+	\section{电源 电动势}
+	\paragraph{电源}提供非静电力的装置
+	\paragraph{(电源的)电动势}单位正电荷绕闭合回路一周时，\textbf{非静电力}所做的功
+	$$ \mathscr{E}=\dfrac{W}{q}=\oint_l\sll{E}_k\cdot\ud\sll{l}=\int_{\mbox{内}} \sll{E}_k\cdot\ud\sll{l} $$
+	\begin{itemize}
+		\item $ \sll{E}_k $：非静电电场强度：作用在单位正电荷上的非静电力
+		\item $ W $：非静电力所做的功
+		\item 电源电动势的大小等于把单位正电荷从负极经电源内部移至正极时非静电力所做的功.
+		\item 电动势不是矢量
+		\item 内部电势升高的方向，即从负极经电源内部到正极的方向, 
+		规定为电动势的方向
+		\item 电源电动势与外电路无关.
+	\end{itemize}
+	\section{磁场、磁感强度}
+	\paragraph{磁感强度$ B $的方向}不受磁场力作用的正电荷的速度方向
+	\paragraph{磁场中某点的磁感强度$ B $的大小}$ B=\dfrac{F_\perp}{qv} $
+	\begin{itemize}
+		\item $ F_\perp $：正电荷垂直\textbf{磁场方向}运动所受的最大磁场力
+	\end{itemize}
+	\paragraph{磁场力}$ \sll{F}=q\sll{v}\times\sll{B}=qvB\sin\theta\sll{e} $
+	\section{毕奥-萨伐尔定律}
+	\subsection{毕奥-萨伐尔定律}
+	\paragraph{电流元}$ I\ud{l} $
+	\begin{itemize}
+		\item $ \ud{l} $：线元矢量
+		\item $ I $：流过某一线元矢量的电流
+	\end{itemize}
+	\paragraph{真空磁导率}$ \mu_0=4\pi\times10^{-7}N\cdot A^{-2} $
+	\paragraph{\hl{毕奥-萨伐尔定律}}$ \ud\sll{B}=\dfrac{\mu_0}{4\pi}\dfrac{I\ud{l}\overbrace{\times\sll{e}_r}^{\sin\theta}}{r^2} $
+	\begin{itemize}
+		\item $ \sll{r} $：电流元$ I\ud{l} $到点$ P $的位置矢量
+		\item $ \sll{e}_r $：沿位置矢量$ \sll{r} $的单位矢量$ \dfrac{\sll{r}}{r} $
+	\end{itemize}
+	\subsection{毕奥-萨伐尔定律应用举例}
+	\subsection{磁矩}
+	\paragraph{磁矩}$ \sll{m}=IS\sll{e}_n $
+	\begin{itemize}
+		\item $ S $：平面圆电流的面积
+		\item $ \sll{e}_n $：圆电流平面的单位正法线矢量
+	\end{itemize}
+	\subsection{*运动电荷的磁场}
+	\section{磁通量、磁场的高斯定理}
+	\subsection{磁感线}
+	\subsection{磁通量、磁场的高斯定理}
+	\paragraph{(通过此曲面的)磁通量}单位名称为韦伯Wb
+	$$ \varPhi=\sll{B}\cdot\sll{S}=\sll{B}\cdot\sll{e}_nS $$
+	$$ \varPhi=\int_S\sll{B}\cdot\ud\sll{S} $$
+	通过磁场中某一曲面的磁感线数
+	\paragraph{磁场的高斯定理}
+	$$ \oint_S\sll{B}\cdot\ud\sll{S}=0 $$
+	通过任意闭合曲面的磁通量必等于零
+	\section{安培环路定理}
+	\subsection{安培环路定理}
+	$$ \oint\sll{B}\cdot\ud{l}=\mu_0I $$
+	\begin{itemize}
+		\item 在恒定磁场中，磁感强度B沿闭合路径的线积分，等于此闭合路径所包围的电流与真空磁导率的乘积.
+		\item 积分回路$ l $的绕行方向与电流的流向呈\textbf{右手螺旋关系}
+	\end{itemize}
+	\paragraph{(B的)环流}B沿闭合路径的线积分
+	\paragraph{安培环路定理}$$ \oint_l\sll{B}\cdot\ud{l}=\mu_0\sum^n_{i=1}I_i $$
+	\begin{itemize}
+		\item B的环流一般不等于零
+		\item 磁场是涡旋场
+	\end{itemize}
+	\subsection{安培环路定理的应用举例}
+	
+	\section{带电粒子在电场和磁场中的运动}
+	\subsection{带电粒子在电场和磁场中所受的力}
+	\paragraph{洛伦兹力}
+	$$ \sll{F}_m=q\sll{v}\times\sll{B} $$
+	\begin{itemize}
+		\item 以右手四指由$ \sll{v} $经小于$ 180^\circ $的角弯向B,拇指的指向就是正电荷所受洛伦兹力的方向
+	\end{itemize}
+	\subsection{带电粒子在磁场中运动举例}
+	\subsubsection{回旋半径和回旋频率}
+	\paragraph{回旋半径}$ R=\dfrac{mv_0}{qB} $
+	\paragraph{回旋周期}$ T=\dfrac{2\pi R}{v_0}=\dfrac{2\pi m}{qB} $
+	\paragraph{回旋频率}$ f=\dfrac{1}{T}=\dfrac{qB}{2\pi m} $
+	
+	\subsubsection{磁聚焦}
+	\paragraph{螺距}
+	$$ d=v_\parallel T=\dfrac{2\pi mv_\parallel}{qB}  $$
+	粒子回转一周所前进的距离
+	\subsubsection{*电子的反粒子、电子偶}
+	\subsection{带电粒子在电场和磁场中运动举例}
+	\subsubsection{质谱仪}
+	\subsubsection{回旋加速器}
+	\section{载流导线在磁场中所受的力}
+	\subsection{安培力}
+	\paragraph{安培定律}
+	$$ \ud\sll{F} = I\ud\sll{l}\times\sll{B} $$
+	\begin{itemize}
+		\item 右手四指由经小于$ 180^\circ $的角弯向$ B $,这时大拇指的指向是安培力的方向
+	\end{itemize}
+	\paragraph{磁场作用于载流线圈的磁力矩}
+	$$ \sll{M}=N\sll{m}\times\sll{B}=NIS\sll{e}_n $$
+	\begin{itemize}
+		\item $ S=l_1l_2 $
+	\end{itemize}
+	\section{*磁场中的磁介质}
+	\chapter{电磁感应、电磁场}
+	\section{电磁感应定律}
+	\subsection{电磁感应现象}
+	\paragraph{电磁感应现象}当穿过一个闭合导体回路所围面积的磁通量发生变化时，不管这种变化是由于什么原因所引起的，回路中就有电流
+	\paragraph{感应电流}回路中所出现的电流
+	\paragraph{感应电动势}这种在回路中由于磁通量的变化而引起的电动势
+	\subsection{电磁感应定律}
+	当穿过闭合回路所围面积的磁通量发生变化时，不论这种变化是什么原因引起的，回路中都会建立起感应电动势，且此感应电动势等于磁通量对时间变化率的负值
+	$$ \mathscr{E}_i=-\frac{d\mathrm{\Phi}}{dt} $$
+	\paragraph{磁通匝数、磁链}$ N\Phi $
+\end{document}
